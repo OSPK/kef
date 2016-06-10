@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="topmargin container">
+	<div class="row text-center">
+		<br><br>
+		<div class="filter">
+		  <!-- Nav tabs -->
+		  <ul class="nav nav-tabs" role="tablist">
+		    <li role="presentation" class="active"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Province</a></li>
+		    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Cities</a></li>
+		    <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Public/Private</a></li>
+		  </ul>
+		  <!-- Tab panes -->
+		  <div class="tab-content">
+		    <div role="tabpanel" class="tab-pane active" id="profile">
+		    	{% for province in provinces %}
+					<a class="h4" href="/universities?province={{province}}"> {{province}} </a> |
+				{% endfor %}
+		    </div>
+		    <div role="tabpanel" class="tab-pane" id="messages">
+			    {% for city in cities %}
+					<a class="h4" href="/universities?city={{city}}"> {{city}} </a> |
+				{% endfor %}
+			</div>
+		    <div role="tabpanel" class="tab-pane" id="settings">
+				<a class="h4" href="/universities?pub_pri=Public"> Public </a> | <a class="h4" href="/universities?pub_pri= Private"> Private </a>
+		    </div>
+		  </div>
+		</div>
+		<br><br>
+		<table class="table table-bordered table-hover">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>City</th>
+					<th>Province</th>
+					<th>Public/Private</th>
+					<th>Website</th>
+					<th>Govt</th>
+					<th>Campuses</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for uni in universities %}
+				<tr>
+					<td><a href="{{url_for('programs', uni_id=uni.id)}}" title="">{{uni.uni_name}}</a></td>
+					<td>{{uni.city}}</td>
+					<td>{{uni.province}}</td>
+					<td>{{uni.pub_pri}}</td>
+					<td>
+						{% if uni.website is not none %}<a href="http://{{uni.website}}" title="">Link</a>{% endif %}
+					</td>
+					<td>{{uni.govt}}</td>
+					<td>{{uni.campuses}}</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div><br><hr><br>
+{% endblock %}

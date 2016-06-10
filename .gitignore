@@ -1,0 +1,14 @@
+__pycache__/
+**/__pycache__/
+env/
+tmp/
+instance/*
+db_repository/
+migrations/
+app.db
+*.pyc
+app/static/.webassets-cache/*
+app/static/uploads/
+*.ods#
+*.ods
+

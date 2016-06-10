@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="topmargin container">
+	<div class="row">
+		<div class="col-md-8">
+			<h1>{{university.uni_name}}</h1>
+			{% for program in programs %}
+				<a href='{{url_for("program", id=program.id)}}'>{{program.degree}} - {{program.title}}</a><br>
+			{% endfor %}
+		</div>
+		<div class="col-md-4 well">
+			<button class="btn btn-lg btn-block" onclick="window.history.back()">Go Back</button>
+			<h3>More universities in <strong>{{university.city}}</strong></h3><hr>
+			<h3>More universities in <strong>{{university.province}}</strong></h3><hr>
+			<h3>More universities that are <strong>{{university.pub_pri}}</strong></h3>
+		</div>
+	</div>
+</div><br><hr><br>
+{% endblock %}
