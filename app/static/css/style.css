@@ -23,7 +23,8 @@
 }
 .bg {
 	background: url("/static/images/bg1.jpg");
-	background-size: contain;
+	    background-size: cover;
+    background-repeat: no-repeat;
 }
 .tab-content>.active {
     background: rgba(214, 214, 214, 0.59)!important;
