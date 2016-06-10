@@ -1,19 +1,39 @@
 {% extends "base.html" %}
 
+{% block content_class %}bg{% endblock %}
+
 {% block content %}
 <div class="topmargin container">
 	<div class="row">
-		<div class="col-md-8">
+		<div class="col-md-8 well">
 			<h1>{{university.uni_name}}</h1>
+			<ol>
 			{% for program in programs %}
-				<a href='{{url_for("program", id=program.id)}}'>{{program.degree}} - {{program.title}}</a><br>
+				<li><a href='{{url_for("program", id=program.id)}}'>{{program.degree}} - {{program.title}}</a></li><br>
 			{% endfor %}
+			</ol>
 		</div>
 		<div class="col-md-4 well">
 			<button class="btn btn-lg btn-block" onclick="window.history.back()">Go Back</button>
-			<h3>More universities in <strong>{{university.city}}</strong></h3><hr>
-			<h3>More universities in <strong>{{university.province}}</strong></h3><hr>
-			<h3>More universities that are <strong>{{university.pub_pri}}</strong></h3>
+			<a href="/universities" class="btn btn-warning btn-lg btn-block">All Universities</a><br>
+			<h3>
+				<a href="/universities?city={{university.city}}">
+					More universities in City: <strong>{{university.city}}</strong>
+				</a>
+			</h3>
+			<hr>
+			<h3>
+				<a href="/universities?province={{university.province}}">
+					More universities in Province: <strong>{{university.province}}</strong>
+				</a>
+			</h3>
+			<hr>
+			<h3>
+				<a href="/universities?pub_pri={{university.pub_pri}}">
+					More universities that are: <strong>{{university.pub_pri}}</strong>
+				</a>
+			</h3>
+			<hr>
 		</div>
 	</div>
 </div><br><hr><br>

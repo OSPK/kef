@@ -1,47 +1,72 @@
 {% extends "base.html" %}
 
+{% macro if_exists(variable) %}
+	{% if variable %}
+		<span class="program_vars">{{variable}}</span><br><br>
+	{% endif %}
+{%- endmacro %}
+
+{% block content_class %}bg{% endblock %}
+
 {% block content %}
 <div class="topmargin container">
 	<div class="row">
-		<div class="col-md-8">
+		<div class="col-md-8 well">
 			<h1>{{university.uni_name}}</h1>
-			{{program.degree}} - {{program.title}}<br>
-			{{program.eligibility}}<br>
-			{{program.institution_name}}<br>
-			{{program.complation_requirement}}<br>
-			{{program.scope}}<br>
-			{{program.fees}}<br>
-			{{program.scholarship}}<br>
-			{{program.duration}}<br>
-			{{program.credit_hours}}<br>
-			{{program.teaching_system}}<br>
-			{{program.seats}}<br>
-			{{program.shift}}<br>
-			{{program.session}}<br>
-			{{program.regular_private}}<br>
-			{{program.department}}<br>
-			{{program.faculty}}<br>
-			{{program.course_outline}}<br>
-			{{program.campus}}<br>
-			{{program.hec_ranking}}<br>
-			{{program.hostel_facility}}<br>
-			{{program.contact}}<br>
-			{{program.location}}<br>
-			{{program.affiliation}}<br>
-			{{program.lectures_notes}}<br>
-			{{program.reference_sites}}<br>
-			{{program.web}}<br>
-			{{program.alumni}}<br>
-			{{program.city}}<br>
-			{{program.district}}<br>
-			{{program.province}}<br>
-			{{program.institute_typeprogram}}<br>
+			<h3>{{ program.degree }} - {{program.title}}</h3><br>
+			{{ if_exists(program.eligibility )}}
+			{{ if_exists(program.institution_name )}}
+			{{ if_exists(program.complation_requirement )}}
+			{{ if_exists(program.scope )}}
+			{{ if_exists(program.fees )}}
+			{{ if_exists(program.scholarship )}}
+			{{ if_exists(program.duration )}}
+			{{ if_exists(program.credit_hours )}}
+			{{ if_exists(program.teaching_system )}}
+			{{ if_exists(program.seats )}}
+			{{ if_exists(program.shift )}}
+			{{ if_exists(program.session )}}
+			{{ if_exists(program.regular_private )}}
+			{{ if_exists(program.department )}}
+			{{ if_exists(program.faculty )}}
+			{{ if_exists(program.course_outline )}}
+			{{ if_exists(program.campus )}}
+			{{ if_exists(program.hec_ranking )}}
+			{{ if_exists(program.hostel_facility )}}
+			{{ if_exists(program.contact )}}
+			{{ if_exists(program.location )}}
+			{{ if_exists(program.affiliation )}}
+			{{ if_exists(program.lectures_notes )}}
+			{{ if_exists(program.reference_sites )}}
+			{{ if_exists(program.web )}}
+			{{ if_exists(program.alumni )}}
+			{{ if_exists(program.city )}}
+			{{ if_exists(program.district )}}
+			{{ if_exists(program.province )}}
+			{{ if_exists(program.institute_typeprogram )}}
 		</div>
 		<div class="col-md-4 well">
 			<button class="btn btn-lg btn-block" onclick="window.history.back()">Go Back</button>
-			<h3>More universities in <strong>{{university.city}}</strong></h3><hr>
-			<h3>More universities in <strong>{{university.province}}</strong></h3><hr>
-			<h3>More universities that are <strong>{{university.pub_pri}}</strong></h3>
+			<a href="/universities" class="btn btn-warning btn-lg btn-block">All Universities</a><br>
+			<h3>
+				<a href="/universities?city={{university.city}}">
+					More universities in City: <strong>{{university.city}}</strong>
+				</a>
+			</h3>
+			<hr>
+			<h3>
+				<a href="/universities?province={{university.province}}">
+					More universities in Province: <strong>{{university.province}}</strong>
+				</a>
+			</h3>
+			<hr>
+			<h3>
+				<a href="/universities?pub_pri={{university.pub_pri}}">
+					More universities that are: <strong>{{university.pub_pri}}</strong>
+				</a>
+			</h3>
+			<hr>
+			<h3>More <strong>{{program.degree}}</strong> Programs</h3>
 		</div>
 	</div>
 </div><br><hr><br>

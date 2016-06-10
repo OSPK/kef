@@ -3,17 +3,6 @@
 {% block content %}
 <div class="main" id="page-top">
 	<div class="row">
-		<div class="col-md-12 backg">
-			<div class="col-md-4 col-md-offset-4 inner col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3">
-				<div class="text-box">
-                	<p class="intro">Introducing</p>
-                    <h2>Karwan e ilm</h2>
-                    <h3>A resources for students</h3>
-                    <p>By <span><a href="#">Karwan e ilm Foundation</a></span></p>
-                    <p><a href="#" class="link-button">About Us</a></p>
-				</div>
-  			</div>
-		</div>
 		<div class="col-md-12 some-notes">
 			<div class="title">
                 <h2>Welcome To Karwan e ilm</h2>
@@ -25,7 +14,7 @@
 	</div>
 </div>
 
-<div class="work" id="resources">
+<div class="work hidden" id="resources">
 	<div class="container">
 		<div class="row" id="starts">
 			<div class="col-md-12 col-sm-12 col-xs-12 work-list">
@@ -104,6 +93,31 @@
 <div class="features" id="section2">
 	<div class="container">
 		<div class="row">
+			<div class="filter text-center">
+				<h2>Find Universities</h2><hr>
+			  <!-- Nav tabs -->
+			  <ul class="nav nav-tabs" role="tablist">
+			    <li role="presentation" class="active"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Province</a></li>
+			    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Cities</a></li>
+			    <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Public/Private</a></li>
+			  </ul>
+			  <!-- Tab panes -->
+			  <div class="tab-content">
+			    <div role="tabpanel" class="tab-pane active" id="profile">
+			    	{% for province in provinces %}
+						<a class="h4" href="/universities?province={{province}}"> {{province}} </a> |
+					{% endfor %}
+			    </div>
+			    <div role="tabpanel" class="tab-pane" id="messages">
+				    {% for city in cities %}
+						<a class="h4" href="/universities?city={{city}}"> {{city}} </a> |
+					{% endfor %}
+				</div>
+			    <div role="tabpanel" class="tab-pane" id="settings">
+					<a class="h4" href="/universities?pub_pri=Public"> Public </a> | <a class="h4" href="/universities?pub_pri= Private"> Private </a>
+			    </div>
+			  </div>
+			</div><hr>
 			<div class="col-md-12">
 				<h2 class="text-center features-text">Features</h2>
 				<div class="col-md-6 col-sm-12 col-xs-12 icon-box">
