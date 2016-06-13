@@ -1,5 +1,6 @@
 from app import db
 
+
 class Universities(db.Model):
     __tablename__ = 'universities'
     id = db.Column(db.Integer, primary_key=True)
@@ -17,6 +18,7 @@ class Universities(db.Model):
 
     # def __repr__(self):
     #     return '<User %r>' % self.username
+
 
 class Programs(db.Model):
     __tablename__ = 'programs'

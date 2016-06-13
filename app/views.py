@@ -1,6 +1,25 @@
 from flask import request, render_template
 from .models import Universities, Programs
-from app import app
+from app import app, db
+from flask_admin import Admin
+from flask_admin.contrib.sqla import ModelView
+
+
+class MyModelView(ModelView):
+    def __init__(self, model, session, name=None, category=None, endpoint=None, url=None, **kwargs):
+        for k, v in kwargs.items():
+            setattr(self, k, v)
+
+        super(MyModelView, self).__init__(model, session, name=name, category=category, endpoint=endpoint, url=url)
+
+    def is_accessible(self):
+        # Logic
+        return True
+
+
+admin = Admin(app, template_mode='bootstrap3')
+admin.add_view(MyModelView(Universities, db.session, list_columns=['id', 'uni_name', 'city', 'province']))
+admin.add_view(ModelView(Programs, db.session))
 
 
 @app.route('/')
