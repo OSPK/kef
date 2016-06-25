@@ -1,5 +1,5 @@
 from flask import request, render_template
-from .models import Universities, Programs
+from .models import Universities, Colleges, Programs
 from app import app, db
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
@@ -19,6 +19,7 @@ class MyModelView(ModelView):
 
 admin = Admin(app, template_mode='bootstrap3')
 admin.add_view(MyModelView(Universities, db.session, list_columns=['id', 'uni_name', 'city', 'province']))
+admin.add_view(MyModelView(Colleges, db.session, list_columns=['id', 'uni_name', 'city', 'province']))
 admin.add_view(ModelView(Programs, db.session))
 
 

@@ -20,6 +20,26 @@ class Universities(db.Model):
     #     return '<User %r>' % self.username
 
 
+class Colleges(db.Model):
+    __tablename__ = 'colleges'
+    id = db.Column(db.Integer, primary_key=True)
+    college_name = db.Column(db.String(512), nullable=False)
+    university_id = db.Column(db.Integer)
+    city = db.Column(db.String(512), nullable=False)
+    province = db.Column(db.String(512), nullable=False)
+    pub_pri = db.Column(db.String(32), nullable=False)
+    website = db.Column(db.String(512))
+    govt = db.Column(db.String(512), nullable=False)
+    campuses = db.Column(db.Integer)
+
+    # def __init__(self, username, email):
+    #     self.username = username
+    #     self.email = email
+
+    # def __repr__(self):
+    #     return '<User %r>' % self.username
+
+
 class Programs(db.Model):
     __tablename__ = 'programs'
     id = db.Column(db.Integer, primary_key=True)
