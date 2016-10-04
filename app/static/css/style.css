@@ -555,6 +555,12 @@ input[placeholder],
     font-family: 'Poppins', sans-serif;
 }
 
+.program_list_item {
+    padding: 8px;
+    margin: 5px;
+    background: #dadada;
+}
+
 @media (min-width: 380px) and (max-width: 768px) {
     .text-box p.intro {
         font-size: 22px;

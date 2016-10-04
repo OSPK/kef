@@ -1,4 +1,4 @@
-from flask import request, render_template
+from flask import request, render_template, redirect, url_for
 from .models import Universities, Colleges, Programs
 from app import app, db
 from flask_admin import Admin
@@ -56,6 +56,24 @@ def program(id):
     program = Programs.query.filter_by(id=id).first()
     university = Universities.query.get(program.uni_id)
     return render_template('program.html', university=university, program=program)
+
+@app.route('/program/<int:id>/add', methods=['POST'])
+def program_add(id):
+    program = Programs()
+    program.uni_id = id
+    program.title = "New Program"
+    db.session.add(program)
+    db.session.commit()
+    return redirect(url_for('programs', uni_id=id))
+
+
+@app.route('/program/<int:id>/delete', methods=['POST'])
+def program_delete(id):
+    program = Programs.query.filter_by(id=id).first()
+    uni = program.uni_id
+    db.session.delete(program)
+    db.session.commit()
+    return redirect(url_for('programs', uni_id=uni))
 
 
 @app.route('/programs/scholarships')
