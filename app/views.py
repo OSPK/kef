@@ -16,11 +16,27 @@ class MyModelView(ModelView):
         # Logic
         return True
 
+class ProgAdmin(ModelView):
+    form_choices = {'degree': [ ('Bachelor', 'Bachelor'),
+                                ('Master', 'Master'),
+                                ('MS', 'MS'),
+                                ('M.Phil', 'M.Phil'),
+                                ('MS/M.Phil', 'MS/M.Phil'),
+                                ('Phd', 'Phd'),
+                                ('Diploma', 'Diploma')],
+                    'scholarship':[('Available','Available'),('Not available','Not available')],
+                    'teaching_system':[('Semester System', 'Semester System'),
+                                        ('Annual system', 'Annual system'),
+                                        ('Distance education system', 'Distance education system')],
+                    'shift':[('morning','morning'),('evening','evening'),('afternoon','afternoon')],
+                    'institute_type':[('university','university'),('college','college')]
+                    }
+
 
 admin = Admin(app, template_mode='bootstrap3')
 admin.add_view(MyModelView(Universities, db.session, list_columns=['id', 'uni_name', 'city', 'province']))
 admin.add_view(MyModelView(Colleges, db.session, list_columns=['id', 'uni_name', 'city', 'province']))
-admin.add_view(ModelView(Programs, db.session))
+admin.add_view(ProgAdmin(Programs, db.session))
 
 
 @app.route('/')
