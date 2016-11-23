@@ -10,13 +10,25 @@
     z-index: 9999;
     top: 0px;
 }
-
+iframe {
+    max-width: 100%;
+}
+.past-papers {
+    background: #d3d4d9;
+}
+.scholarships {
+    background: #42484d;
+    color:#efefef;
+}
 .logo {
     color: #fa3447;
     font-weight: 100;
     font-size: 30px;
     padding: 0px !important;
     line-height: 60px;
+}
+img {
+    max-width: 100%;
 }
 .main {
 	margin-top: 20px;
