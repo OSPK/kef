@@ -1,10 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="main" id="page-top">
+<div class="main hidden" id="page-top">
 	<div class="row">
 		<div class="col-md-12 some-notes">
 			<div class="title">
+
                 <h2>Welcome To Karwan e ilm</h2>
             </div>
             <div class="desc">
@@ -14,87 +15,12 @@
 	</div>
 </div>
 
-<div class="work hidden" id="resources">
-	<div class="container">
-		<div class="row" id="starts">
-			<div class="col-md-12 col-sm-12 col-xs-12 work-list">
-				<h2 class="text-center portfolio-text">Resources</h2>
-				<div class="col-md-4 col-sm-6 col-xs-12 work-space">
-					<a href="/universities">
-                		<div class="featured-img">
-                			<img src="/static/images/story1.png"/>
-                		</div>
-                		<div class="image-hover">
-                			<i class="glyphicon glyphicon-eye-open"></i>
-						 </div>
-                		<h3>Find Universities</h3>
-                	</a>
-				</div>
-				<div class="col-md-4 col-sm-6 col-xs-12 work-space">
-					<a href="/static/images/story2.png" data-lightbox="image-1">
-                		<div class="featured-img">
-                			<img src="/static/images/story2.png"/>
-                		</div>
-                		<div class="image-hover">
-                			<i class="glyphicon glyphicon-eye-open"></i>
-						 </div>
-                		<h3>Find Scholarships</h3>
-                	</a>
-				</div>
-				<div class="col-md-4 col-sm-6 col-xs-12 work-space">
-					<a href="/static/images/story3.png" data-lightbox="image-1">
-                		<div class="featured-img">
-                			<img src="/static/images/story3.png"/>
-                		</div>
-                		<div class="image-hover">
-                			<i class="glyphicon glyphicon-eye-open"></i>
-						 </div>
-                		<h3>Find Colleges</h3>
-                	</a>
-				</div>
-				<div class="col-md-4 col-sm-6 col-xs-12 work-space">
-					<a href="/static/images/story2.png" data-lightbox="image-1">
-                		<div class="featured-img">
-                			<img src="/static/images/story2.png"/>
-                		</div>
-                		<div class="image-hover">
-                			<i class="glyphicon glyphicon-eye-open"></i>
-						 </div>
-                		<h3>Find Courses</h3>
-                	</a>
-				</div>
-				<div class="col-md-4 col-sm-6 col-xs-12 work-space">
-					<a href="/static/images/story3.png" data-lightbox="image-1">
-                		<div class="featured-img">
-                			<img src="/static/images/story3.png"/>
-                		</div>
-                		<div class="image-hover">
-                			<i class="glyphicon glyphicon-eye-open"></i>
-						 </div>
-                		<h3>Download Courses</h3>
-                	</a>
-				</div>
-				<div class="col-md-4 col-sm-6 col-xs-12 work-space">
-					<a href="/static/images/story1.png" data-lightbox="image-1">
-                		<div class="featured-img">
-                			<img src="/static/images/story1.png"/>
-                		</div>
-                		<div class="image-hover">
-                			<i class="glyphicon glyphicon-eye-open"></i>
-						 </div>
-                		<h3>Other Resources</h3>
-                	</a>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-
 <div class="features" id="section2">
 	<div class="container">
 		<div class="row">
 			<div class="filter text-center">
-				<h1>Find Universities</h1><hr>
+				<img src="/static/images/logoline.png">
+				<h1>Search University Database</h1><hr>
 			  <!-- Nav tabs -->
 			  <ul class="nav nav-tabs" role="tablist">
 			    <li role="presentation" class="active"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Province</a></li>
@@ -191,41 +117,194 @@
 	</div>
 </div>
 
-<div class="countspace">
+<div class="work" id="resources">
 	<div class="container">
-	<div class="row">
-		<div class="col-md-12 countbg">
-			<div class="col-xs-12 col-sm-4 col-md-4">
-                <div class="counter-item">
-                    <i class="glyphicon glyphicon-blackboard"></i>
-                    <div class="timer" data-from="0" data-to="9854" data-speed="5000" data-refresh-interval="50"></div>
-                    <h5>Courses</h5>                               
-                </div>
-            </div>  
-            <div class="col-xs-12 col-sm-4 col-md-4">
-                <div class="counter-item">
-                    <i class="glyphicon glyphicon-education"></i>
-                    <div class="timer" data-from="0" data-to="178" data-speed="5000" data-refresh-interval="50"></div>
-                    <h5>Universities</h5>                               
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-4 col-md-4">
-                <div class="counter-item">
-                    <i class="glyphicon glyphicon-user"></i>
-                    <div class="timer" data-from="0" data-to="3297" data-speed="35000" data-refresh-interval="50"></div>
-                    <h5>Students Served</h5>                                                   
-                </div>
-            </div>
+		<div class="row" id="starts">
+			<div class="col-md-12 col-sm-12 col-xs-12 work-list">
+				<div class="row">
+					<h2 class="text-center portfolio-text">Latest News</h2>
+					<div class="col-md-4 col-sm-6 col-xs-12 work-space">
+						<a href="/article/1">
+	                		<div class="featured-img">
+	                			<img src="/static/images/shahbaz-sharif.jpg"/>
+	                		</div>
+	                		<div class="image-hover">
+	                			<i class="glyphicon glyphicon-eye-open"></i>
+							 </div>
+	                		<h3>CM reviews progress on educational reforms programme</h3>
+	                	</a>
+					</div>
+					<div class="col-md-4 col-sm-6 col-xs-12 work-space">
+						<a href="/article/2">
+	                		<div class="featured-img">
+	                			<img src="/static/images/girls.gif"/>
+	                		</div>
+	                		<div class="image-hover">
+	                			<i class="glyphicon glyphicon-eye-open"></i>
+							 </div>
+	                		<h3>Govt asked to remove controversial lesson from course book</h3>
+	                	</a>
+					</div>
+					<div class="col-md-4 col-sm-6 col-xs-12 work-space">
+						<a href="/article/3">
+	                		<div class="featured-img">
+	                			<img src="/static/images/data.gif"/>
+	                		</div>
+	                		<div class="image-hover">
+	                			<i class="glyphicon glyphicon-eye-open"></i>
+							 </div>
+	                		<h3>A staggering 81pc of all government schools in Pakistan are primary schools</h3>
+	                	</a>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4 col-sm-6 col-xs-12 work-space">
+						<a href="/article/4">
+	                		<div class="featured-img">
+	                			<img src="/static/images/nust.gif"/>
+	                		</div>
+	                		<div class="image-hover">
+	                			<i class="glyphicon glyphicon-eye-open"></i>
+							 </div>
+	                		<h3>NUST stands among world’s top 150 young universities</h3>
+	                	</a>
+					</div>
+					<div class="col-md-4 col-sm-6 col-xs-12 work-space">
+						<a href="/article/5">
+	                		<div class="featured-img">
+	                			<img src="/static/images/tablet.gif"/>
+	                		</div>
+	                		<div class="image-hover">
+	                			<i class="glyphicon glyphicon-eye-open"></i>
+							 </div>
+	                		<h3>Punjab Schools Education Department will award tablets to students of class 5 and class 8</h3>
+	                	</a>
+					</div>
+					<div class="col-md-4 col-sm-6 col-xs-12 work-space">
+						<a href="/article/6">
+	                		<div class="featured-img">
+	                			<img src="/static/images/aiou.gif"/>
+	                		</div>
+	                		<div class="image-hover">
+	                			<i class="glyphicon glyphicon-eye-open"></i>
+							 </div>
+	                		<h3>Nigerian academicians visits Open University, sign MoU for partnership</h3>
+	                	</a>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
+
+<div class="countspace">
+	<div class="container"><br>
+		<div class="row">
+			<h1>Latest Courses</h1><hr>
+			<div class="row">
+				<div class="col-md-6">
+	                <iframe width="640" height="360" src="https://www.youtube.com/embed/z-OxzIC6pic" frameborder="0" allowfullscreen></iframe>
+	                <h2>Introduction to Computer Science</h2>
+	            </div>  
+	            <div class="col-md-6">
+	                <iframe width="640" height="360" src="https://www.youtube.com/embed/ndWqKOJ9DgQ" frameborder="0" allowfullscreen></iframe>
+	                <h2>Introduction to Linear Algebra</h2>
+	            </div>
+			</div><hr>
+			<div class="row">
+				<div class="col-md-6">
+	                <iframe width="640" height="360" src="https://www.youtube.com/embed/4FduU3EokBY" frameborder="0" allowfullscreen></iframe>
+	                <h2>Introduction to Sociology</h2>
+	            </div>  
+	            <div class="col-md-6">
+	                <iframe width="640" height="360" src="https://www.youtube.com/embed/P3FKHH2RzjI?list=PLB5FA5E41465EE995" frameborder="0" allowfullscreen></iframe>
+	                <h2>Introduction to Psychology</h2>
+	            </div>
+			</div><br>
+			<button class="btn btn-block btn-primary">More</button>
+		</div>
+	</div>
+</div>
+
+<div class="container">
+	<hr>&nbsp;
+</div>
+
+<div class="container-fluid">
+	<div class="row past-papers">
+		<div class="col-md-6 text-center">
+			<h3>Past papers</h3>
+			<a href=""><h4>Intermediate Past Papers Federal Board</h4></a>
+			<a href=""><h4>Intermediate Past Papers Punjab Board</h4></a>
+			<a href=""><h4>Intermediate Past Papers Sindh Board</h4></a>
+			<a href=""><h4>Intermediate Past Papers KPK Board</h4></a>
+			<a href=""><h4>Intermediate Past Papers Balochistan Board</h4></a>
+			<a href=""><h4>University Past Papers</h4></a>
+			<a href=""><h4>CSS Past Papers</h4></a>
+		</div>
+		<div class="col-md-6 text-center">
+			<h3>Date Sheets</h3>
+			<a href=""><h4>Intermediate Date Sheet Federal Board</h4></a>
+			<a href=""><h4>Intermediate Date Sheet Punjab Board</h4></a>
+			<a href=""><h4>Intermediate Date Sheet Sindh Board</h4></a>
+			<a href=""><h4>Intermediate Date Sheet KPK Board</h4></a>
+			<a href=""><h4>Intermediate Date Sheet Balochistan Board</h4></a>
+			<a href=""><h4>University Date Sheet</h4></a>
+			<a href=""><h4>CSS Date Sheet</h4></a>
+		</div>
+	</div>
+</div>
+
+<div class="container-fluid">
+	<div class="row scholarships text-center">
+		<a href="/universities">
+			<img style="width:100%;" src="/static/images/scholarships.jpg">
+		</a>
+		<h2>Scholarships available for deserving candidates, Apply Now!</h2>
+	</div>
+	<br>
+</div>
+
+<div class="container-fluid">
+	<div class="row">
+		<h1 class="text-center">Success Stories</h1>
+		<div class="col-md-6">
+			<div class="row">
+				<div class="col-md-2">
+				<img class="img-circle" src="/static/images/story1.jpg">
+				</div>
+				<div class="col-md-10"><em>Hasan Askari is an employee of a multi national telecom company. He is from a small remote village near Hunza, by using technology and online resources, he has succefully completed graduation with flying colors and secured a high-paying job.</em></div>
+			</div><br>
+			<div class="row">
+				<div class="col-md-2">
+				<img class="img-circle" src="/static/images/story2.jpg">
+				</div>
+				<div class="col-md-10"><em>Ikram Haq is now a government employee of grade 17. He started from humble beginnings in a small village of Punjab but through sheer hard work and dedication he has reached this place</em></div>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="row">
+				<div class="col-md-2">
+				<img class="img-circle" src="/static/images/story3.jpg">
+				</div>
+				<div class="col-md-10"><em>Asif Khan is an engineer who has succefully completed his graduation with the help of Karwan e Ilm foundation. He has studies hard to make a name for himself.</em></div>
+			</div><br>
+			<div class="row">
+				<div class="col-md-2">
+				<img class="img-circle" src="/static/images/story4.jpg">
+				</div>
+				<div class="col-md-10"><em>Abdullah Rehman secured the top position in both matric and Intermediate by applying his intelligence and working extra-hard. He is a exemplary student and a shining beacon for our youth. Currently he is persuing his masters degree in Bio Technology.</em></div>
+			</div>
+		</div>
+	</div>
+	<br>
 </div>
 
 <div class="contact" id="section4">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				<h2 class="text-center portfolio-text">Contact</h2>
+				<h2 class="text-center portfolio-text">Contact for Career Counselling</h2>
 				<div class="col-md-6 col-sm-12 col-xs-12contact-form">
 					<form role="form">
                         <div class="form-group">
