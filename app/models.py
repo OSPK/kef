@@ -50,7 +50,6 @@ class Universities(db.Model):
     website = db.Column(db.String(512))
     govt = db.Column(db.String(512), nullable=False)
     campuses = db.Column(db.Integer)
-    posts = db.relationship('Posts', backref='university', lazy='dynamic')
     programs = db.relationship('Programs', backref='university', lazy='dynamic')
     colleges = db.relationship('Colleges', backref='university', lazy='dynamic')
 
@@ -72,7 +71,6 @@ class Colleges(db.Model):
     website = db.Column(db.String(512))
     govt = db.Column(db.String(512), nullable=False)
     campuses = db.Column(db.Integer)
-    posts = db.relationship('Posts', backref='college', lazy='dynamic')
 
     # def __init__(self, username, email):
     #     self.username = username
@@ -137,8 +135,6 @@ class Posts(db.Model):
     meta_title = db.Column(db.String(512))
     meta_description = db.Column(db.String(512))
     content = db.Column(db.Text())
-    uni_id = db.Column(db.Integer, db.ForeignKey('universities.id'))
-    college_id = db.Column(db.Integer, db.ForeignKey('colleges.id'))
     program_id = db.Column(db.Integer, db.ForeignKey('programs.id'))
 
 
