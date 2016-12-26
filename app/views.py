@@ -1,12 +1,20 @@
-from flask import request, render_template, redirect, url_for
-from .models import Universities, Colleges, Programs
-from app import app, db
+from flask import request, render_template, redirect, url_for, flash
+from .models import Universities, Colleges, Programs, User, Posts
+from app import app, db, login_manager
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
+from flask_login import login_user, logout_user,\
+                        current_user, login_required
 import re
+from .forms import LoginForm
 from jinja2 import evalcontextfilter, Markup, escape
 
 _paragraph_re = re.compile(r'(?:\r\n|\r|\n){2,}')
+
+@login_manager.user_loader
+def user_loader(user_id):
+    return User.query.filter_by(username=user_id).first()
+
 
 @app.template_filter()
 @evalcontextfilter
@@ -29,6 +37,9 @@ class MyModelView(ModelView):
         return True
 
 class ProgAdmin(ModelView):
+    def is_accessible(self):
+        return current_user.is_authenticated
+
     form_choices = {'degree': [ ('Bachelor', 'Bachelor'),
                                 ('Master', 'Master'),
                                 ('MS', 'MS'),
@@ -44,25 +55,84 @@ class ProgAdmin(ModelView):
                     'institute_type':[('university','university'),('college','college')]
                     }
 
+class MyModelView(ModelView):
+    def is_accessible(self):
+        return current_user.is_authenticated
+    list_columns=['id', 'uni_name', 'city', 'province']
+
+
+class PostsView(ModelView):
+    def is_accessible(self):
+        return current_user.is_authenticated
+
+    list_columns=['id', 'title', 'post_date']
+
+    form_choices = {'post_type': [ ('Bachelor', 'Bachelor'),
+                                ('Master', 'Master'),
+                                ('MS', 'MS'),
+                                ('M.Phil', 'M.Phil'),
+                                ('MS/M.Phil', 'MS/M.Phil'),
+                                ('Phd', 'Phd'),
+                                ('Diploma', 'Diploma')]
+                    }
 
 admin = Admin(app, template_mode='bootstrap3')
-admin.add_view(MyModelView(Universities, db.session, list_columns=['id', 'uni_name', 'city', 'province']))
-admin.add_view(MyModelView(Colleges, db.session, list_columns=['id', 'uni_name', 'city', 'province']))
+admin.add_view(MyModelView(Universities, db.session))
+admin.add_view(MyModelView(Colleges, db.session))
 admin.add_view(ProgAdmin(Programs, db.session))
+admin.add_view(PostsView(Posts, db.session))
+
+CITIES = ['Abbottabad', 'Bagh', 'Bahawalpur', 'Bannu', 'Bhimber', 'Charsadda', 'D.I.Khan', 'Dera Ghazi Khan', 'Dir', 'Faisalabad', 'Gilgit', 'Gujranwala', 'Gujrat', 'Haripur', 'Hyderabad', 'Islamabad', 'Jamshoro', 'Karachi', 'Karak', 'Khairpur', 'Khuzdar', 'Kohat', 'Kotli', 'Lahore', 'Larkana', 'Lasbela', 'Loralai', 'Malakand', 'Manshera', 'Mardan', 'Mirpur', 'Multan', 'Muzaffarabad', 'Nawabshah', 'Nerain Sharif', 'Nowshera', 'Peshawar', 'Quetta', 'Rahim Yar Khan', 'Rawalakot', 'Rawalpindi', 'Sakrand', 'Sargodha', 'Sialkot', 'Sukkur', 'Swabi', 'Swat', 'Tandojam', 'Taxila', 'Topi', 'Turbat', 'Wah']
+PROVINCES = ["Islamabad", "Khyber Pakhtunkhwa", "Punjab", "Sindh", "Balochistan", "Azad Jammu and Kashmir", "Gilgit-Baltistan"]
+
+
+#ROUTES
+
+@app.route('/setup')
+def setup():
+    admin = User.query.filter_by(username="admin").first()
+    if not admin:
+        admin = User("admin", "123karwan")
+        db.session.add(admin)
+        db.session.commit()
+        return "ready"
+    else:
+        return "already ready"
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            flash('Logged in successfully.')
+
+            return redirect('/admin')
+        else:
+            flash('Unsuccessful.', 'warning')
+
+    return render_template('login.html', form=form)
+
+
+@app.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    return redirect("/login")
 
 
 @app.route('/')
 def index():
-    cities = ['Abbottabad', 'Bagh', 'Bahawalpur', 'Bannu', 'Bhimber', 'Charsadda', 'D.I.Khan', 'Dera Ghazi Khan', 'Dir', 'Faisalabad', 'Gilgit', 'Gujranwala', 'Gujrat', 'Haripur', 'Hyderabad', 'Islamabad', 'Jamshoro', 'Karachi', 'Karak', 'Khairpur', 'Khuzdar', 'Kohat', 'Kotli', 'Lahore', 'Larkana', 'Lasbela', 'Loralai', 'Malakand', 'Manshera', 'Mardan', 'Mirpur', 'Multan', 'Muzaffarabad', 'Nawabshah', 'Nerain Sharif', 'Nowshera', 'Peshawar', 'Quetta', 'Rahim Yar Khan', 'Rawalakot', 'Rawalpindi', 'Sakrand', 'Sargodha', 'Sialkot', 'Sukkur', 'Swabi', 'Swat', 'Tandojam', 'Taxila', 'Topi', 'Turbat', 'Wah']
-    provinces = ["Islamabad", "Khyber Pakhtunkhwa", "Punjab", "Sindh", "Balochistan", "Azad Jammu and Kashmir", "Gilgit-Baltistan"]
+    cities = CITIES
+    provinces = PROVINCES
     return render_template('index.html', cities=cities, provinces=provinces)
 
 
 @app.route('/universities')
 def universities():
     universities = Universities.query.all()
-    cities = ['Abbottabad', 'Bagh', 'Bahawalpur', 'Bannu', 'Bhimber', 'Charsadda', 'D.I.Khan', 'Dera Ghazi Khan', 'Dir', 'Faisalabad', 'Gilgit', 'Gujranwala', 'Gujrat', 'Haripur', 'Hyderabad', 'Islamabad', 'Jamshoro', 'Karachi', 'Karak', 'Khairpur', 'Khuzdar', 'Kohat', 'Kotli', 'Lahore', 'Larkana', 'Lasbela', 'Loralai', 'Malakand', 'Manshera', 'Mardan', 'Mirpur', 'Multan', 'Muzaffarabad', 'Nawabshah', 'Nerain Sharif', 'Nowshera', 'Peshawar', 'Quetta', 'Rahim Yar Khan', 'Rawalakot', 'Rawalpindi', 'Sakrand', 'Sargodha', 'Sialkot', 'Sukkur', 'Swabi', 'Swat', 'Tandojam', 'Taxila', 'Topi', 'Turbat', 'Wah']
-    provinces = ["Islamabad", "Khyber Pakhtunkhwa", "Punjab", "Sindh", "Balochistan", "Azad Jammu and Kashmir", "Gilgit-Baltistan"]
+    cities = CITIES
+    provinces = PROVINCES
+
     if request.args.get('city') is not None:
         universities = Universities.query.filter_by(city=request.args.get('city')).all()
     if request.args.get('province') is not None:
@@ -86,6 +156,7 @@ def program(id):
     return render_template('program.html', university=university, program=program)
 
 @app.route('/program/<int:id>/add', methods=['POST'])
+@login_required
 def program_add(id):
     program = Programs()
     program.uni_id = id
@@ -96,6 +167,7 @@ def program_add(id):
 
 
 @app.route('/program/<int:id>/delete', methods=['POST'])
+@login_required
 def program_delete(id):
     program = Programs.query.filter_by(id=id).first()
     uni = program.uni_id
