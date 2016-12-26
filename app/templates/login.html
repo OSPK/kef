@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container text-center"><br><br>
+	{% for field in form.errors %}
+	{% for error in form.errors[field] %}
+	    <div class="alert alert-error">
+	        <strong>Error!</strong> {{error}}
+	    </div>
+	{% endfor %}
+	{% endfor %}
+
+	{% if current_user.is_authenticated %}
+	<p>You're logged in already!</p>
+	<a href="/admin" title="Admin">Go to admin</a>
+	{% else %}
+	<br>
+	<form action="/login" method="POST">
+	  	{{ form.hidden_tag() }}
+	    {{ form.username.label }} {{ form.username(size=20) }}
+	    {{ form.password.label }} {{ form.password(size=20) }}
+	    <input type="submit" value="Go">
+	</form>
+	{% endif %}
+</div><br><br>
+{% endblock %}
