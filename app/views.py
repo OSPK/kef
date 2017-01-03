@@ -102,7 +102,9 @@ class PostsView(ModelView):
 
 
 class ImageView(ModelView):
-    
+    def is_accessible(self):
+        return current_user.is_authenticated
+
     def _list_thumbnail(view, context, model, name):
         if not model.path:
             return ''
@@ -141,13 +143,17 @@ def del_image(mapper, connection, target):
         except OSError:
             pass
 
+class MyFileAdmin(FileAdmin):
+    def is_accessible(self):
+        return current_user.is_authenticated
+
 admin = Admin(app, template_mode='bootstrap3')
 admin.add_view(UniModelView(Universities, db.session))
 admin.add_view(MyModelView(Colleges, db.session))
 admin.add_view(ProgAdmin(Programs, db.session))
 admin.add_view(PostsView(Posts, db.session))
 admin.add_view(ImageView(Image, db.session))
-admin.add_view(FileAdmin(file_path, '/static/', name='Static Files'))
+admin.add_view(MyFileAdmin(file_path, '/static/', name='Static Files'))
 
 CITIES = ['Abbottabad', 'Bagh', 'Bahawalpur', 'Bannu', 'Bhimber', 'Charsadda', 'D.I.Khan', 'Dera Ghazi Khan', 'Dir', 'Faisalabad', 'Gilgit', 'Gujranwala', 'Gujrat', 'Haripur', 'Hyderabad', 'Islamabad', 'Jamshoro', 'Karachi', 'Karak', 'Khairpur', 'Khuzdar', 'Kohat', 'Kotli', 'Lahore', 'Larkana', 'Lasbela', 'Loralai', 'Malakand', 'Manshera', 'Mardan', 'Mirpur', 'Multan', 'Muzaffarabad', 'Nawabshah', 'Nerain Sharif', 'Nowshera', 'Peshawar', 'Quetta', 'Rahim Yar Khan', 'Rawalakot', 'Rawalpindi', 'Sakrand', 'Sargodha', 'Sialkot', 'Sukkur', 'Swabi', 'Swat', 'Tandojam', 'Taxila', 'Topi', 'Turbat', 'Wah']
 PROVINCES = ["Islamabad", "Khyber Pakhtunkhwa", "Punjab", "Sindh", "Balochistan", "Azad Jammu and Kashmir", "Gilgit-Baltistan"]
