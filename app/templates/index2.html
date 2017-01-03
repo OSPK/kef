@@ -18,39 +18,7 @@
 <div class="features" id="section2">
 	<div class="container">
 		<div class="row">
-			<div class="filter text-center">
-				<img src="/static/images/logoline.png">
-				<h1>Search University Database</h1>
-				<div id="custom-search-input">
-	                <div class="input-group col-md-12">
-	                    <input type="text" class="form-control input-lg" placeholder="Search" />
-	                    <span class="input-group-btn">
-	                        <button class="btn btn-info btn-lg" type="button">
-	                            <i class="glyphicon glyphicon-search"></i>
-	                        </button>
-	                    </span>
-	                </div>
-	            </div>
-				<hr>
-			  <!-- Nav tabs -->
-			  <ul class="nav nav-tabs" role="tablist">
-			    <li role="presentation" class="active"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Province</a></li>
-			    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Cities</a></li>
-			  </ul>
-			  <!-- Tab panes -->
-			  <div class="tab-content">
-			    <div role="tabpanel" class="tab-pane active" id="profile">
-			    	{% for province in provinces %}
-						<a class="h4" href="/universities?province={{province}}"> {{province}} </a> |
-					{% endfor %}
-			    </div>
-			    <div role="tabpanel" class="tab-pane" id="messages">
-				    {% for city in cities %}
-						<a class="h4" href="/universities?city={{city}}"> {{city}} </a> |
-					{% endfor %}
-				</div>
-			  </div>
-			</div><hr>
+			{% include 'search.html' %}
 		</div>
 	</div>
 </div>

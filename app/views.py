@@ -12,6 +12,7 @@ from .forms import LoginForm, CKTextAreaField
 from jinja2 import evalcontextfilter, Markup, escape
 from sqlalchemy.event import listens_for
 from flask_admin.contrib.fileadmin import FileAdmin
+from sqlalchemy import or_,  and_
 
 _paragraph_re = re.compile(r'(?:\r\n|\r|\n){2,}')
 
@@ -207,12 +208,23 @@ def posts(type):
     posts = Posts.query.filter_by(post_type=type).all()
     return render_template('posts2.html', posts=posts)
 
+@app.route('/search/')
+def search():
+    query = request.args.get('s')
+    province = request.args.get('province')
+    city = request.args.get('city')
+    s = "%{0}%".format(query)
+    
+    universities = Universities.query.filter(or_(Universities.uni_name.ilike(s),\
+                   Universities.city==city,\
+                   Universities.province==province,\
+                   )).all()
+    return render_template('universities2.html', universities=universities)
+
 
 @app.route('/universities')
 def universities():
     universities = Universities.query.all()
-    cities = CITIES
-    provinces = PROVINCES
 
     if request.args.get('city') is not None:
         universities = Universities.query.filter_by(city=request.args.get('city')).all()
@@ -220,7 +232,7 @@ def universities():
         universities = Universities.query.filter_by(province=request.args.get('province')).all()
     if request.args.get('pub_pri') is not None:
         universities = Universities.query.filter_by(pub_pri=request.args.get('pub_pri')).all()
-    return render_template('universities.html', cities=cities, provinces=provinces, universities=universities)
+    return render_template('universities.html', universities=universities)
 
 
 @app.route('/programs/<int:uni_id>')
