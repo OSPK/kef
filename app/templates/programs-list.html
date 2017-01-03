@@ -40,7 +40,7 @@
 					<td>{{p.degree}}</td>
 					<td><a href="{{url_for('program', id=p.id)}}" title="">{{p.title}}</a></td>
 					<td><a href="{{url_for('programs', uni_id=p.university.id)}}" title="">{{p.university}}</a></td>
-					<td>{{p.duration|truncate(10)}}</td>
+					<td>{{p.duration|truncate(10) if p.duration != None}}</td>
 				</tr>
 				{% endfor %}
 			</tbody>
