@@ -215,9 +215,10 @@ def search():
     province = request.args.get('province', '*')
     city = request.args.get('city')
     program = request.args.get('p')
-    program = "%{0}%".format(program)
+    
 
-    if program:
+    if program is not None:
+        program = "%{0}%".format(program)
         programs = Programs.query.filter(Programs.title.ilike(program)).\
                    all()
         return render_template('programs-list.html', programs=programs)
@@ -241,6 +242,8 @@ def search():
             universities = Universities.query.filter(Universities.city==city).all()
         elif province:
             universities = Universities.query.filter(Universities.province==province).all()
+        elif query:
+            universities = Universities.query.filter(Universities.uni_name.ilike(s)).all()
         else:
             universities = Universities.query.all()
 
