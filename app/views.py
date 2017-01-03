@@ -198,7 +198,8 @@ def logout():
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    posts = Posts.query.all()
+    return render_template('index2.html', posts=posts)
 
 
 @app.route('/<type>')
