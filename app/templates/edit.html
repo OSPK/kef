@@ -1,0 +1,15 @@
+{% extends 'admin/model/edit.html' %}
+
+{% block tail %}
+    {{ super() }}
+    <style>
+    textarea.form-control {
+	    height: 600px;
+	}
+    </style>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.6.1/ckeditor.js"></script>
+    <script type="text/javascript">
+
+    	CKEDITOR.replace( 'content' );
+    </script>
+{% endblock %}

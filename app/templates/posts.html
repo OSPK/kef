@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+
+
+{% block content_class %}bg{% endblock %}
+
+{% block content %}
+<style>
+.article {
+	padding:1rem 2rem;
+}
+.featured-img img {
+	width:100%;
+}
+</style>
+<div class="topmargin container">
+	<div class="row">
+		<div class="col-md-8">
+		{% for post in posts %}
+			<div class="row well">
+				<div class="col-md-3">
+					<img src="{{url_for('static', filename=post.featured_image)}}" alt="">
+				</div>
+				<div class="col-md-9">
+					<h1 style="margin-top:0px;">{{post.title}}</h1>
+					<small>Published: {{post.post_date}}</small>
+					<h4>{{post.meta_description}}</h4>
+					<button class="btn btn-primary pull-right">Read More</button>
+				</div>
+			</div>
+		{% endfor %}
+		</div>
+		<div class="col-md-4 well">
+
+		</div>
+	</div>
+</div><br><hr><br>
+{% endblock %}
