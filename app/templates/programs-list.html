@@ -31,7 +31,6 @@
 					<th>Title</th>
 					<th>University</th>
 					<th>Duration</th>
-					<th>Credit Hours</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -39,10 +38,9 @@
 				<tr>
 					
 					<td>{{p.degree}}</td>
-					<td>{{p.title}}</td>
-					<td><a href="" title="">{{p.university}}</a></td>
-					<td>{{p.duration}}</td>
-					<td>{{p.credit_hours}}</td>
+					<td><a href="{{url_for('program', id=p.id)}}" title="">{{p.title}}</a></td>
+					<td><a href="{{url_for('programs', uni_id=p.university.id)}}" title="">{{p.university}}</a></td>
+					<td>{{p.duration|truncate(10)}}</td>
 				</tr>
 				{% endfor %}
 			</tbody>
