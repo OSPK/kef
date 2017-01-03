@@ -42,6 +42,7 @@ class User(UserMixin, db.Model):
 
 class Universities(db.Model):
     __tablename__ = 'universities'
+    __searchable__ = ['programs', 'uni_name']
     id = db.Column(db.Integer, primary_key=True)
     programs = db.relationship('Programs', backref='university', lazy='joined')
     colleges = db.relationship('Colleges', backref='university', lazy='joined')
