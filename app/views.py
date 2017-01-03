@@ -211,14 +211,39 @@ def posts(type):
 @app.route('/search/')
 def search():
     query = request.args.get('s')
-    province = request.args.get('province')
-    city = request.args.get('city')
     s = "%{0}%".format(query)
-    
-    universities = Universities.query.filter(or_(Universities.uni_name.ilike(s),\
-                   Universities.city==city,\
-                   Universities.province==province,\
-                   )).all()
+    province = request.args.get('province', '*')
+    city = request.args.get('city')
+    program = request.args.get('p')
+    program = "%{0}%".format(program)
+
+    if program:
+        programs = Programs.query.filter(Programs.title.ilike(program)).\
+                   all()
+        return render_template('programs-list.html', programs=programs)
+    else:
+        if city and province and query:
+            universities = Universities.query.filter(and_(Universities.uni_name.ilike(s),\
+                           Universities.city==city,\
+                           Universities.province==province,\
+                           )).all()
+        elif city and query:
+            universities = Universities.query.filter(and_(Universities.uni_name.ilike(s),\
+                           Universities.city==city,\
+                           )).all()
+        elif province and query:
+            universities = Universities.query.filter(and_(Universities.uni_name.ilike(s),\
+                           Universities.province==province,\
+                           )).all()
+        elif city and province:
+            universities = Universities.query.filter(Universities.province==province).filter(Universities.city==city).all()
+        elif city:
+            universities = Universities.query.filter(Universities.city==city).all()
+        elif province:
+            universities = Universities.query.filter(Universities.province==province).all()
+        else:
+            universities = Universities.query.all()
+
     return render_template('universities2.html', universities=universities)
 
 
