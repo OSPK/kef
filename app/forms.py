@@ -1,11 +1,21 @@
 from flask_wtf import Form, FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, HiddenField, DateTimeField
+from wtforms import StringField, PasswordField, SubmitField,\
+                    HiddenField, DateTimeField, TextAreaField
 from wtforms.validators import DataRequired, Length
 from wtforms.widgets import TextArea
 from .models import User
 from flask_login import login_user, logout_user,\
                         current_user, login_required
 import datetime
+
+class CKTextAreaWidget(TextArea):
+    def __call__(self, field, **kwargs):
+        kwargs.setdefault('class_', 'ckeditor')
+        return super(CKTextAreaWidget, self).__call__(field, **kwargs)
+
+
+class CKTextAreaField(TextAreaField):
+    widget = CKTextAreaWidget()
 
 class LoginForm(Form):
     username = StringField("Username", validators=[DataRequired("Please enter your username."), Length(min=3, max=14)])

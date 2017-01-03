@@ -1,13 +1,17 @@
+import os
+import os.path as op
 from flask import request, render_template, redirect, url_for, flash
-from .models import Universities, Colleges, Programs, User, Posts
+from .models import Universities, Colleges, Programs, User, Posts, Image
 from app import app, db, login_manager
-from flask_admin import Admin
+from flask_admin import Admin, form
 from flask_admin.contrib.sqla import ModelView
 from flask_login import login_user, logout_user,\
                         current_user, login_required
 import re
-from .forms import LoginForm
+from .forms import LoginForm, CKTextAreaField
 from jinja2 import evalcontextfilter, Markup, escape
+from sqlalchemy.event import listens_for
+from flask_admin.contrib.fileadmin import FileAdmin
 
 _paragraph_re = re.compile(r'(?:\r\n|\r|\n){2,}')
 
@@ -25,6 +29,14 @@ def nl2br(eval_ctx, value):
         result = Markup(result)
     return result
 
+
+# Create directory for file fields to use
+file_path = op.join(op.dirname(__file__), 'static')
+try:
+    os.mkdir(file_path)
+except OSError:
+    pass
+
 class MyModelView(ModelView):
     def __init__(self, model, session, name=None, category=None, endpoint=None, url=None, **kwargs):
         for k, v in kwargs.items():
@@ -33,13 +45,22 @@ class MyModelView(ModelView):
         super(MyModelView, self).__init__(model, session, name=name, category=category, endpoint=endpoint, url=url)
 
     def is_accessible(self):
-        # Logic
-        return True
+        return current_user.is_authenticated
+
+    column_list=['id', 'uni_name', 'city', 'province']
+
+class UniModelView(MyModelView):
+    column_searchable_list = ['uni_name']
 
 class ProgAdmin(ModelView):
     def is_accessible(self):
         return current_user.is_authenticated
-
+    column_display_pk = True
+    column_hide_backrefs = False
+    column_list=['id', 'title', 'university.uni_name', 'degree']
+    column_sortable_list=['id', 'title', 'university.uni_name', 'degree']
+    column_searchable_list = ['title', 'university.uni_name']
+    form_columns=['university','degree','title','city','district','province','institute_type','eligibility','complation_requirement','scope','fees','scholarship','duration','credit_hours','teaching_system','seats','shift','session','regular_private','department','faculty','course_outline','campus','hec_ranking','hostel_facility','contact','location','affiliation','lectures_notes','reference_sites','web','alumni']
     form_choices = {'degree': [ ('Bachelor', 'Bachelor'),
                                 ('Master', 'Master'),
                                 ('MS', 'MS'),
@@ -55,32 +76,78 @@ class ProgAdmin(ModelView):
                     'institute_type':[('university','university'),('college','college')]
                     }
 
-class MyModelView(ModelView):
-    def is_accessible(self):
-        return current_user.is_authenticated
-    list_columns=['id', 'uni_name', 'city', 'province']
-
-
+    
 class PostsView(ModelView):
     def is_accessible(self):
         return current_user.is_authenticated
 
-    list_columns=['id', 'title', 'post_date']
+    column_list=['id', 'title', 'post_date']
 
-    form_choices = {'post_type': [ ('Bachelor', 'Bachelor'),
-                                ('Master', 'Master'),
-                                ('MS', 'MS'),
-                                ('M.Phil', 'M.Phil'),
-                                ('MS/M.Phil', 'MS/M.Phil'),
-                                ('Phd', 'Phd'),
-                                ('Diploma', 'Diploma')]
+    form_overrides = dict(text=CKTextAreaField)
+
+    create_template = 'edit.html'
+    edit_template = 'edit.html'
+
+    form_choices = {'post_type': [ ('Article', 'Article'),
+                                ('Past Paper', 'Past Paper'),
+                                ('Date Sheet', 'Date Sheet'),
+                                ('Syllabus', 'Syllabus'),
+                                ('News', 'News'),
+                                ('Notes', 'Notes')]
                     }
+    form_extra_fields = {
+        'featured_image': form.ImageUploadField('Featured Image',
+                                      base_path=file_path)
+    }
+
+
+class ImageView(ModelView):
+    
+    def _list_thumbnail(view, context, model, name):
+        if not model.path:
+            return ''
+        imgpath = url_for('static', filename=form.thumbgen_filename(model.path))
+        return Markup('<img src="%s">' % imgpath)
+    def _list_path(view, context, model, name):
+        if not model.path:
+            return ''
+        imgpath = url_for('static', filename=model.path)
+        return Markup('<a href="{0}">{0}'.format(imgpath, imgpath))
+    column_formatters = {
+        'img': _list_thumbnail,
+        'path': _list_path
+    }
+    column_list=['name', 'path', 'img']
+    form_columns=['name', 'path']
+    # Alternative way to contribute field is to override it completely.
+    # In this case, Flask-Admin won't attempt to merge various parameters for the field.
+    form_extra_fields = {
+        'path': form.ImageUploadField('Image',
+                                      base_path=file_path)
+    }
+@listens_for(Image, 'after_delete')
+def del_image(mapper, connection, target):
+    if target.path:
+        # Delete image
+        try:
+            os.remove(op.join(file_path, target.path))
+        except OSError:
+            pass
+
+        # Delete thumbnail
+        try:
+            os.remove(op.join(file_path,
+                              form.thumbgen_filename(target.path)))
+        except OSError:
+            pass
 
 admin = Admin(app, template_mode='bootstrap3')
-admin.add_view(MyModelView(Universities, db.session))
+admin.add_view(UniModelView(Universities, db.session))
 admin.add_view(MyModelView(Colleges, db.session))
 admin.add_view(ProgAdmin(Programs, db.session))
 admin.add_view(PostsView(Posts, db.session))
+admin.add_view(ImageView(Image, db.session))
+admin.add_view(FileAdmin(file_path, '/static/', name='Static Files'))
 
 CITIES = ['Abbottabad', 'Bagh', 'Bahawalpur', 'Bannu', 'Bhimber', 'Charsadda', 'D.I.Khan', 'Dera Ghazi Khan', 'Dir', 'Faisalabad', 'Gilgit', 'Gujranwala', 'Gujrat', 'Haripur', 'Hyderabad', 'Islamabad', 'Jamshoro', 'Karachi', 'Karak', 'Khairpur', 'Khuzdar', 'Kohat', 'Kotli', 'Lahore', 'Larkana', 'Lasbela', 'Loralai', 'Malakand', 'Manshera', 'Mardan', 'Mirpur', 'Multan', 'Muzaffarabad', 'Nawabshah', 'Nerain Sharif', 'Nowshera', 'Peshawar', 'Quetta', 'Rahim Yar Khan', 'Rawalakot', 'Rawalpindi', 'Sakrand', 'Sargodha', 'Sialkot', 'Sukkur', 'Swabi', 'Swat', 'Tandojam', 'Taxila', 'Topi', 'Turbat', 'Wah']
 PROVINCES = ["Islamabad", "Khyber Pakhtunkhwa", "Punjab", "Sindh", "Balochistan", "Azad Jammu and Kashmir", "Gilgit-Baltistan"]

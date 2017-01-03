@@ -43,6 +43,9 @@ class User(UserMixin, db.Model):
 class Universities(db.Model):
     __tablename__ = 'universities'
     id = db.Column(db.Integer, primary_key=True)
+    programs = db.relationship('Programs', backref='university', lazy='joined')
+    colleges = db.relationship('Colleges', backref='university', lazy='joined')
+    posts    = db.relationship('Posts', backref='university', lazy='joined')
     uni_name = db.Column(db.String(512), nullable=False)
     city = db.Column(db.String(512), nullable=False)
     province = db.Column(db.String(512), nullable=False)
@@ -50,8 +53,7 @@ class Universities(db.Model):
     website = db.Column(db.String(512))
     govt = db.Column(db.String(512), nullable=False)
     campuses = db.Column(db.Integer)
-    programs = db.relationship('Programs', backref='university', lazy='dynamic')
-    colleges = db.relationship('Colleges', backref='university', lazy='dynamic')
+    
 
     # def __init__(self, username, email):
     #     self.username = username
@@ -83,8 +85,9 @@ class Colleges(db.Model):
 class Programs(db.Model):
     __tablename__ = 'programs'
     id = db.Column(db.Integer, primary_key=True)
-    degree = db.Column(db.Text())
     uni_id = db.Column(db.Integer, db.ForeignKey('universities.id'))
+    degree = db.Column(db.Text())
+    # posts = db.relationship('Posts', backref='program', lazy='dynamic')
     title = db.Column(db.Text())
     eligibility = db.Column(db.Text())
     institution_name = db.Column(db.Text())
@@ -116,14 +119,14 @@ class Programs(db.Model):
     district = db.Column(db.Text())
     province = db.Column(db.Text())
     institute_type = db.Column(db.Text())
-    posts = db.relationship('Posts', backref='program', lazy='dynamic')
+    
 
     # def __init__(self, username, email):
     #     self.username = username
     #     self.email = email
 
     def __repr__(self):
-        return self.title
+        return self.title + " - " + str(self.university)
 
 
 class Posts(db.Model):
@@ -132,12 +135,21 @@ class Posts(db.Model):
     post_type = db.Column(db.String(512), nullable=False)
     post_date = db.Column(db.DateTime, nullable=True)
     title = db.Column(db.String(512), nullable=False)
+    university_id = db.Column(db.Integer, db.ForeignKey('universities.id'))
     meta_title = db.Column(db.String(512))
     meta_description = db.Column(db.String(512))
+    featured_image = db.Column(db.Unicode(128))
     content = db.Column(db.Text())
-    program_id = db.Column(db.Integer, db.ForeignKey('programs.id'))
+    
 
+    def __init__(self, **kwargs):
+        super(Posts, self).__init__(**kwargs)
 
-    def __init__(self, post):
-        for k, v in post.items():
-            setattr(self, k, v)
+class Image(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.Unicode(64))
+    path = db.Column(db.Unicode(128))
+    img = db.Column(db.Unicode(128))
+
+    def __unicode__(self):
+        return self.name

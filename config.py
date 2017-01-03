@@ -11,4 +11,6 @@ DEBUG = True
 
 HOST = '0.0.0.0'
 
+SECRET_KEY="dfsdfsdf"
+
 ADMINS = frozenset(['youremail@yourdomain.con'])
