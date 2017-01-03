@@ -20,12 +20,24 @@
 		<div class="row">
 			<div class="filter text-center">
 				<img src="/static/images/logoline.png">
-				<h1>Search University Database</h1><hr>
+				<h1>Search University Database</h1>
+
+	            <div id="custom-search-input">
+	                <div class="input-group col-md-12">
+	                    <input type="text" class="form-control input-lg" placeholder="Search" />
+	                    <span class="input-group-btn">
+	                        <button class="btn btn-info btn-lg" type="button">
+	                            <i class="glyphicon glyphicon-search"></i>
+	                        </button>
+	                    </span>
+	                </div>
+	            </div>
+
+				<hr>
 			  <!-- Nav tabs -->
 			  <ul class="nav nav-tabs" role="tablist">
 			    <li role="presentation" class="active"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Province</a></li>
 			    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Cities</a></li>
-			    <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Public/Private</a></li>
 			  </ul>
 			  <!-- Tab panes -->
 			  <div class="tab-content">
@@ -39,9 +51,6 @@
 						<a class="h4" href="/universities?city={{city}}"> {{city}} </a> |
 					{% endfor %}
 				</div>
-			    <div role="tabpanel" class="tab-pane" id="settings">
-					<a class="h4" href="/universities?pub_pri=Public"> Public </a> | <a class="h4" href="/universities?pub_pri= Private"> Private </a>
-			    </div>
 			  </div>
 			</div><hr>
 		</div>
