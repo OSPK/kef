@@ -88,12 +88,12 @@ class PostsView(ModelView):
     create_template = 'edit.html'
     edit_template = 'edit.html'
 
-    form_choices = {'post_type': [ ('Article', 'Article'),
-                                ('Past Paper', 'Past Paper'),
-                                ('Date Sheet', 'Date Sheet'),
-                                ('Syllabus', 'Syllabus'),
-                                ('News', 'News'),
-                                ('Notes', 'Notes')]
+    form_choices = {'post_type': [ ('articles', 'Article'),
+                                ('past-papers', 'Past Paper'),
+                                ('date-sheets', 'Date Sheet'),
+                                ('syllabus', 'Syllabus'),
+                                ('news', 'News'),
+                                ('notes', 'Notes')]
                     }
     form_extra_fields = {
         'featured_image': form.ImageUploadField('Featured Image',
@@ -152,6 +152,9 @@ admin.add_view(FileAdmin(file_path, '/static/', name='Static Files'))
 CITIES = ['Abbottabad', 'Bagh', 'Bahawalpur', 'Bannu', 'Bhimber', 'Charsadda', 'D.I.Khan', 'Dera Ghazi Khan', 'Dir', 'Faisalabad', 'Gilgit', 'Gujranwala', 'Gujrat', 'Haripur', 'Hyderabad', 'Islamabad', 'Jamshoro', 'Karachi', 'Karak', 'Khairpur', 'Khuzdar', 'Kohat', 'Kotli', 'Lahore', 'Larkana', 'Lasbela', 'Loralai', 'Malakand', 'Manshera', 'Mardan', 'Mirpur', 'Multan', 'Muzaffarabad', 'Nawabshah', 'Nerain Sharif', 'Nowshera', 'Peshawar', 'Quetta', 'Rahim Yar Khan', 'Rawalakot', 'Rawalpindi', 'Sakrand', 'Sargodha', 'Sialkot', 'Sukkur', 'Swabi', 'Swat', 'Tandojam', 'Taxila', 'Topi', 'Turbat', 'Wah']
 PROVINCES = ["Islamabad", "Khyber Pakhtunkhwa", "Punjab", "Sindh", "Balochistan", "Azad Jammu and Kashmir", "Gilgit-Baltistan"]
 
+@app.context_processor
+def ctites_provinces():
+    return {'cities': CITIES, 'provinces': PROVINCES}
 
 #ROUTES
 
@@ -189,9 +192,13 @@ def logout():
 
 @app.route('/')
 def index():
-    cities = CITIES
-    provinces = PROVINCES
-    return render_template('index.html', cities=cities, provinces=provinces)
+    return render_template('index.html')
+
+
+@app.route('/<type>')
+def posts(type):
+    posts = Posts.query.filter_by(post_type=type).all()
+    return render_template('posts2.html', posts=posts)
 
 
 @app.route('/universities')

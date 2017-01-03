@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="main hidden" id="page-top">
+	<div class="row">
+		<div class="col-md-12 some-notes">
+			<div class="title">
+
+                <h2>Welcome To Karwan e ilm</h2>
+            </div>
+            <div class="desc">
+                <p>Karwan e ilm is a free resources for students all over Pakistan to seek and get affordable higher education.</p>
+            </div>
+		</div>
+	</div>
+</div>
+
+<div class="features" id="section2">
+	<div class="container">
+		<div class="row">
+			<div class="filter text-center">
+				<img src="/static/images/logoline.png">
+				<h1>Search University Database</h1><hr>
+			  <!-- Nav tabs -->
+			  <ul class="nav nav-tabs" role="tablist">
+			    <li role="presentation" class="active"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Province</a></li>
+			    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Cities</a></li>
+			    <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Public/Private</a></li>
+			  </ul>
+			  <!-- Tab panes -->
+			  <div class="tab-content">
+			    <div role="tabpanel" class="tab-pane active" id="profile">
+			    	{% for province in provinces %}
+						<a class="h4" href="/universities?province={{province}}"> {{province}} </a> |
+					{% endfor %}
+			    </div>
+			    <div role="tabpanel" class="tab-pane" id="messages">
+				    {% for city in cities %}
+						<a class="h4" href="/universities?city={{city}}"> {{city}} </a> |
+					{% endfor %}
+				</div>
+			    <div role="tabpanel" class="tab-pane" id="settings">
+					<a class="h4" href="/universities?pub_pri=Public"> Public </a> | <a class="h4" href="/universities?pub_pri= Private"> Private </a>
+			    </div>
+			  </div>
+			</div><hr>
+		</div>
+	</div>
+</div>
+<div class="topmargin container">
+	<div class="row">
+		<div class="col-md-8">
+		{% for post in posts %}
+			<div class="row well">
+				<div class="col-md-3">
+					<img src="{{url_for('static', filename=post.featured_image)}}" alt="">
+				</div>
+				<div class="col-md-9">
+					<h1 style="margin-top:0px;">{{post.title}}</h1>
+					<small>Published: {{post.post_date}}</small>
+					<h4>{{post.meta_description}}</h4>
+					<button class="btn btn-primary pull-right">Read More</button>
+				</div>
+			</div>
+		{% endfor %}
+		</div>
+		<div class="col-md-4 well">
+
+		</div>
+	</div>
+</div><br><hr><br>
+{% endblock %}
