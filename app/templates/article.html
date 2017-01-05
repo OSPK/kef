@@ -16,7 +16,7 @@
 <div class="topmargin container">
 	<div class="row">
 		<div class="col-md-8 well well-lg">
-				<img style="width:100%;" src="{{post.featured_image}}"><br>
+				<img style="width:100%;" src="{{url_for('static', filename=post.featured_image)}}"><br>
 				<h1>{{post.title}}</h1>
 				<div class="content">
 					{{post.content|safe|nl2br}}
