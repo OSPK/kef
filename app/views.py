@@ -311,7 +311,7 @@ def all_programs():
     return render_template('all_programs.html', programs=programs)
 
 
-@app.route('/article/<int:id>/<slug>')
+@app.route('/article/<int:id>/')
 def article(id):
     post = Posts.query.get(id)
     return render_template('article.html', post=post)
