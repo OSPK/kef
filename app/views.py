@@ -314,4 +314,4 @@ def all_programs():
 @app.route('/article/<int:id>/')
 def article(id):
     post = Posts.query.get(id)
-    return render_template('article.html', post=post)
+    return render_template('article2.html', post=post)
