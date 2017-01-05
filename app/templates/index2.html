@@ -29,8 +29,22 @@
 			<div class="col-md-8 work-list">
 				<div class="row">
 					<h2 class="text-center portfolio-text">Latest Articles</h2>
-					<h3>News</h3>
+					<h3 class='article-cat'>News</h3>
 					{% for post in types.news %}
+						<div class="col-md-6 col-sm-6 col-xs-12 work-space">
+							<a href="/article/1">
+		                		<div class="featured-img">
+		                			<img src="{{url_for('static', filename=post.featured_image)}}"/>
+		                		</div>
+		                		<div class="image-hover">
+		                			<i class="glyphicon glyphicon-eye-open"></i>
+								 </div>
+		                		<h3>{{post.title}}</h3>
+		                	</a>
+						</div>
+					{% endfor %}
+					<h3 class='article-cat'>Articles</h3>
+					{% for post in types.articles %}
 						<div class="col-md-6 col-sm-6 col-xs-12 work-space">
 							<a href="/article/1">
 		                		<div class="featured-img">

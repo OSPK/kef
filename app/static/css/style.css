@@ -81,7 +81,10 @@ logo:active {
     margin: 0px !important;
     padding: 14px;
 }
-
+.article-cat {
+    background: #40b3b3;
+    padding:0.8rem;
+}
 .backg {
     background-attachment: fixed;
     background-color: #645862;
