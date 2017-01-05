@@ -26,12 +26,12 @@
 <div class="work" id="resources">
 	<div class="container">
 		<div class="row" id="starts">
-			<div class="col-md-12 col-sm-12 col-xs-12 work-list">
+			<div class="col-md-8 work-list">
 				<div class="row">
 					<h2 class="text-center portfolio-text">Latest Articles</h2>
 					{% for post in types.news %}
-
-						<div class="col-md-4 col-sm-6 col-xs-12 work-space">
+						<h3>News</h3>
+						<div class="col-md-6 col-sm-6 col-xs-12 work-space">
 							<a href="/article/1">
 		                		<div class="featured-img">
 		                			<img src="{{url_for('static', filename=post.featured_image)}}"/>
@@ -46,6 +46,7 @@
 					{% endfor %}
 				</div>
 			</div>
+			<div class="col-md-4">.</div>
 		</div>
 	</div>
 </div>
