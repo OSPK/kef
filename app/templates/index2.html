@@ -33,7 +33,7 @@
 					<div class="row">
 						{% for post in types.news %}
 							<div class="col-md-6 col-sm-6 col-xs-12 work-space">
-								<a href="/article/1">
+								<a href="{{url_for('article', id=post.id)}}">
 			                		<div class="featured-img">
 			                			<img src="{{url_for('static', filename=post.featured_image)}}"/>
 			                		</div>
@@ -49,7 +49,7 @@
 					<div class="row">
 						{% for post in types.articles %}
 							<div class="col-md-6 col-sm-6 col-xs-12 work-space">
-								<a href="/article/1">
+								<a href="{{url_for('article', id=post.id)}}">
 			                		<div class="featured-img">
 			                			<img src="{{url_for('static', filename=post.featured_image)}}"/>
 			                		</div>
