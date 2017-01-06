@@ -13,4 +13,6 @@ HOST = '0.0.0.0'
 
 SECRET_KEY="dfsdfsdf"
 
+SERVER_NAME='educator.com.pk'
+
 ADMINS = frozenset(['youremail@yourdomain.con'])
