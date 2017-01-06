@@ -12,7 +12,7 @@ from .forms import LoginForm, CKTextAreaField
 from jinja2 import evalcontextfilter, Markup, escape
 from sqlalchemy.event import listens_for
 from flask_admin.contrib.fileadmin import FileAdmin
-from flask_admin.menu import MenuLink
+from flask.ext.admin.menu import MenuLink
 from sqlalchemy import or_,  and_
 
 _paragraph_re = re.compile(r'(?:\r\n|\r|\n){2,}')
@@ -155,7 +155,7 @@ admin.add_view(MyModelView(Colleges, db.session))
 admin.add_view(ProgAdmin(Programs, db.session))
 admin.add_view(PostsView(Posts, db.session))
 admin.add_view(ImageView(Image, db.session))
-# admin.add_link(MenuLink(name='Logout', category='', url="/logout"))
+admin.add_link(MenuLink(name='Logout', category='', url="/logout"))
 # admin.add_view(MyFileAdmin(file_path, '/static/', name='Static Files'))
 
 CITIES = ['Abbottabad', 'Bagh', 'Bahawalpur', 'Bannu', 'Bhimber', 'Charsadda', 'D.I.Khan', 'Dera Ghazi Khan', 'Dir', 'Faisalabad', 'Gilgit', 'Gujranwala', 'Gujrat', 'Haripur', 'Hyderabad', 'Islamabad', 'Jamshoro', 'Karachi', 'Karak', 'Khairpur', 'Khuzdar', 'Kohat', 'Kotli', 'Lahore', 'Larkana', 'Lasbela', 'Loralai', 'Malakand', 'Manshera', 'Mardan', 'Mirpur', 'Multan', 'Muzaffarabad', 'Nawabshah', 'Nerain Sharif', 'Nowshera', 'Peshawar', 'Quetta', 'Rahim Yar Khan', 'Rawalakot', 'Rawalpindi', 'Sakrand', 'Sargodha', 'Sialkot', 'Sukkur', 'Swabi', 'Swat', 'Tandojam', 'Taxila', 'Topi', 'Turbat', 'Wah']
@@ -210,7 +210,7 @@ def index():
 @app.route('/<type>')
 def posts(type):
     posts = Posts.query.filter_by(post_type=type).all()
-    return render_template('posts2.html', posts=posts)
+    return render_template('posts2.html', posts=posts, type=type)
 
 @app.route('/search/')
 def search():
