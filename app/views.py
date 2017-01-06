@@ -153,6 +153,9 @@ class UserModelView(ModelView):
     def is_accessible(self):
         return current_user.is_authenticated
 
+    column_list=['id', 'username']
+    form_columns=['username', 'password']
+
 admin = Admin(app, template_mode='bootstrap3')
 admin.add_view(UniModelView(Universities, db.session))
 admin.add_view(MyModelView(Colleges, db.session))
