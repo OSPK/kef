@@ -159,8 +159,11 @@ class UserModelView(ModelView):
     def after_model_change(self, form, model, is_created):
          password = form.password.data
          print(password)
-         # model.set_password(password)
+         model.set_password(password)
+         db.session.commit()
          # if is_created: # create the table just once
+         #     model.set_password(password)
+         #     db.session.commit()
          #     #
 
 admin = Admin(app, template_mode='bootstrap3')
