@@ -509,7 +509,10 @@ h2.portfolio-text::after {
     float: left;
     width: 100%;
 }
-
+.content {
+    font-size: 1.8rem;
+    line-height: 3.9rem;
+}
 .contact-form,
 .address-space {
     margin-top: 20px;
