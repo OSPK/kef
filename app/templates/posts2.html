@@ -26,7 +26,7 @@
 <section class="publicaciones-blog-home">
   <div class="container">
     <div class="">
-      <h2>Latest  <b>{{posts[0].post_type}}</b></h2>
+      <h2>Latest  <b>{% if posts[0] %}{{posts[0].post_type}}{% endif %}</b></h2>
       <div class="row-page row">
       	{% if posts[0] %}
         <div class="col-page col-sm-4 col-md-4">
