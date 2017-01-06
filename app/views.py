@@ -82,7 +82,7 @@ class PostsView(ModelView):
     def is_accessible(self):
         return current_user.is_authenticated
 
-    column_list=['id', 'title', 'post_date']
+    column_list=['id', 'title', 'post_date', 'post_type']
 
     form_overrides = dict(text=CKTextAreaField)
 
