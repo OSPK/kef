@@ -67,6 +67,63 @@
 							{% endif %}
 						{% endfor %}
 					</div>
+					<h3 class='article-cat'>Past Papers</h3>
+					<div class="row">
+						{% for post in types.past-papers %}
+							<div class="col-md-6 col-sm-6 col-xs-12 work-space">
+								<a href="{{url_for('article', id=post.id)}}">
+			                		<div class="featured-img">
+			                			<img src="{{url_for('static', filename=post.featured_image)}}"/>
+			                		</div>
+			                		<div class="image-hover">
+			                			<i class="glyphicon glyphicon-eye-open"></i>
+									 </div>
+			                		<h3>{{post.title}}</h3>
+			                	</a>
+							</div>
+							{% if (loop.index == 2) %}
+							</div><div class="row">
+							{% endif %}
+						{% endfor %}
+					</div>
+					<h3 class='article-cat'>Datesheets</h3>
+					<div class="row">
+						{% for post in types.date-sheets %}
+							<div class="col-md-6 col-sm-6 col-xs-12 work-space">
+								<a href="{{url_for('article', id=post.id)}}">
+			                		<div class="featured-img">
+			                			<img src="{{url_for('static', filename=post.featured_image)}}"/>
+			                		</div>
+			                		<div class="image-hover">
+			                			<i class="glyphicon glyphicon-eye-open"></i>
+									 </div>
+			                		<h3>{{post.title}}</h3>
+			                	</a>
+							</div>
+							{% if (loop.index == 2) %}
+							</div><div class="row">
+							{% endif %}
+						{% endfor %}
+					</div>
+					<h3 class='article-cat'>Syllabus</h3>
+					<div class="row">
+						{% for post in types.syllabus %}
+							<div class="col-md-6 col-sm-6 col-xs-12 work-space">
+								<a href="{{url_for('article', id=post.id)}}">
+			                		<div class="featured-img">
+			                			<img src="{{url_for('static', filename=post.featured_image)}}"/>
+			                		</div>
+			                		<div class="image-hover">
+			                			<i class="glyphicon glyphicon-eye-open"></i>
+									 </div>
+			                		<h3>{{post.title}}</h3>
+			                	</a>
+							</div>
+							{% if (loop.index == 2) %}
+							</div><div class="row">
+							{% endif %}
+						{% endfor %}
+					</div>
 				</div>
 			</div>
 			<div class="col-md-4">.</div>
