@@ -157,7 +157,7 @@ class UserModelView(ModelView):
     form_columns=['username', 'password']
 
     def after_model_change(self, form, model, is_created):
-         password = form.password
+         password = form.password.data
          print(password)
          # model.set_password(password)
          # if is_created: # create the table just once
