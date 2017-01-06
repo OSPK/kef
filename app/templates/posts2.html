@@ -29,86 +29,86 @@
       <h2>Latest  <b>{{posts[0].post_type}}</b></h2>
       <div class="row-page row">
         <div class="col-page col-sm-4 col-md-4">
-          <a href="" class="fondo-publicacion-home">
+          <a href="{{url_for('article', id=posts[0].id)}}" class="fondo-publicacion-home">
             <div class="img-publicacion-home">
-              <img class="img-responsive" src="https://placeholdit.imgix.net/~text?txtsize=34&txt=&w=500&h=300">
+              <img class="img-responsive" src="{{url_for('static', filename=posts[0].featured_image)}">
             </div>
             <div class="contenido-publicacion-home">
-              <h3>Neque porro quisquam est qui dolorem ipsum</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed placerat porta ex, sed ullamcorper ipsum lacinia nec.<span>...</span></p>
+              <h3>{{posts[0].title}}</h3>
+              <p>{{posts[0].content[:150]|striptags}}<span>...</span></p>
             </div>
             <div class="mascara-enlace-blog-home">
-              <span>Lorem </span>
+              <span>Read More </span>
             </div>
           </a>
         </div>
-        <div class="col-page col-sm-4 col-md-3">
-          <a href=""  class="fondo-publicacion-home">
+        <div class="col-page col-sm-4 col-md-4">
+          <a href="{{url_for('article', id=posts[1].id)}}" class="fondo-publicacion-home">
             <div class="img-publicacion-home">
-              <img class="img-responsive" src="https://placeholdit.imgix.net/~text?txtsize=34&txt=&w=500&h=300">
+              <img class="img-responsive" src="{{url_for('static', filename=posts[1].featured_image)}">
             </div>
             <div class="contenido-publicacion-home">
-              <h3>Neque porro quisquam est qui dolorem ipsum</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed placerat porta ex, sed ullamcorper ipsum lacinia nec.<span>...</span></p>
+              <h3>{{posts[1].title}}</h3>
+              <p>{{posts[1].content[:150]|striptags}}<span>...</span></p>
             </div>
             <div class="mascara-enlace-blog-home">
-              <span>Lorem </span>
+              <span>Read More </span>
+            </div>
+          </a>
+        </div>
+        <div class="col-page col-sm-4 col-md-4">
+          <a href="{{url_for('article', id=posts[2].id)}}" class="fondo-publicacion-home">
+            <div class="img-publicacion-home">
+              <img class="img-responsive" src="{{url_for('static', filename=posts[2].featured_image)}">
+            </div>
+            <div class="contenido-publicacion-home">
+              <h3>{{posts[2].title}}</h3>
+              <p>{{posts[2].content[:150]|striptags}}<span>...</span></p>
+            </div>
+            <div class="mascara-enlace-blog-home">
+              <span>Read More </span>
             </div>
           </a>
         </div>
         <div class="col-page col-sm-4 col-md-5">
-          <a href="" class="fondo-publicacion-home">
+          <a href="{{url_for('article', id=posts[3].id)}}" class="fondo-publicacion-home">
             <div class="img-publicacion-home">
-              <img class="img-responsive" src="https://placeholdit.imgix.net/~text?txtsize=34&txt=&w=500&h=300">
+              <img class="img-responsive" src="{{url_for('static', filename=posts[3].featured_image)}">
             </div>
             <div class="contenido-publicacion-home">
-              <h3>Neque porro quisquam est qui dolorem ipsum</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed placerat porta ex, sed ullamcorper ipsum lacinia nec.<span>...</span></p>
+              <h3>{{posts[3].title}}</h3>
+              <p>{{posts[3].content[:150]|striptags}}<span>...</span></p>
             </div>
             <div class="mascara-enlace-blog-home">
-              <span>Lorem </span>
+              <span>Read More </span>
             </div>
           </a>
         </div>
-        <div class="col-page col-sm-4 col-md-6">
-          <a href="" class="fondo-publicacion-home">
+        <div class="col-page col-sm-4 col-md-4">
+          <a href="{{url_for('article', id=posts[4].id)}}" class="fondo-publicacion-home">
             <div class="img-publicacion-home">
-              <img class="img-responsive" src="https://placeholdit.imgix.net/~text?txtsize=34&txt=&w=500&h=300">
+              <img class="img-responsive" src="{{url_for('static', filename=posts[4].featured_image)}">
             </div>
             <div class="contenido-publicacion-home">
-              <h3>Neque porro quisquam est qui dolorem ipsum</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed placerat porta ex, sed ullamcorper ipsum lacinia nec.<span>...</span></p>
+              <h3>{{posts[4].title}}</h3>
+              <p>{{posts[4].content[:150]|striptags}}<span>...</span></p>
             </div>
             <div class="mascara-enlace-blog-home">
-              <span>Lorem </span>
-            </div>
-          </a>
-        </div>
-        <div class="col-page col-sm-4 col-md-3">
-          <a href=""  class="fondo-publicacion-home">
-            <div class="img-publicacion-home">
-              <img class="img-responsive" src="https://placeholdit.imgix.net/~text?txtsize=34&txt=&w=500&h=300">
-            </div>
-            <div class="contenido-publicacion-home">
-              <h3>Neque porro quisquam est qui dolorem ipsum</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed placerat porta ex, sed ullamcorper ipsum lacinia nec.<span>...</span></p>
-            </div>
-            <div class="mascara-enlace-blog-home">
-              <span>Lorem </span>
+              <span>Read More </span>
             </div>
           </a>
         </div>
         <div class="col-page col-sm-4 col-md-3">
-          <a href="" class="fondo-publicacion-home">
+          <a href="{{url_for('article', id=posts[5].id)}}" class="fondo-publicacion-home">
             <div class="img-publicacion-home">
-              <img class="img-responsive" src="https://placeholdit.imgix.net/~text?txtsize=34&txt=&w=500&h=300">
+              <img class="img-responsive" src="{{url_for('static', filename=posts[5].featured_image)}">
             </div>
             <div class="contenido-publicacion-home">
-              <h3>Neque porro quisquam est qui dolorem ipsum</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed placerat porta ex, sed ullamcorper ipsum lacinia nec.<span>...</span></p>
+              <h3>{{posts[5].title}}</h3>
+              <p>{{posts[5].content[:150]|striptags}}<span>...</span></p>
             </div>
             <div class="mascara-enlace-blog-home">
-              <span>Lorem </span>
+              <span>Read More </span>
             </div>
           </a>
         </div>
@@ -121,6 +121,7 @@
 	<div class="row">
 		<div class="col-md-8">
 		{% for post in posts %}
+			{% if loop.index > 6 %}
 			<div class="row well">
 				<div class="col-md-3">
 					<img src="{{url_for('static', filename=post.featured_image)}}" alt="">
@@ -132,6 +133,7 @@
 					<button class="btn btn-primary pull-right">Read More</button>
 				</div>
 			</div>
+			{% endif %}
 		{% endfor %}
 		</div>
 		<div class="col-md-4 well">
