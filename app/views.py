@@ -84,7 +84,7 @@ class PostsView(ModelView):
         return current_user.is_authenticated
 
     column_list=['id', 'title', 'post_date', 'post_type']
-
+    column_searchable_list = ['title', 'post_type', 'program.title' ,'university.uni_name']
     form_overrides = dict(text=CKTextAreaField)
 
     create_template = 'edit.html'
