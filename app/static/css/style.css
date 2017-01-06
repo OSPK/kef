@@ -1,5 +1,8 @@
 @charset "utf-8";
-
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,100italic,100,300,300italic,900italic,900,700,700italic,500italic,500,400italic);
+body {
+    font-family: 'Roboto', sans-serif;
+}
 /* CSS Document */
 
 .header {
@@ -682,10 +685,6 @@ input[placeholder],
 }
 
 /**EXTRAS**/
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,100italic,100,300,300italic,900italic,900,700,700italic,500italic,500,400italic);
-body {
-    font-family: 'Roboto', sans-serif;
-}
 .publicaciones-blog-home {
     padding-bottom: 50px;
     background: url("") no-repeat fixed center center;
