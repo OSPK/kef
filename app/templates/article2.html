@@ -29,7 +29,9 @@ body {
                 <p><span class="glyphicon glyphicon-time"></span> Posted on {{post.post_date}}</p>
                 <hr>
                 <!-- Preview Image -->
+                <div class="text-center">
                 <img class="img-responsive" src="{{url_for('static', filename=post.featured_image)}}" alt="">
+                </div>
                 <hr>
                 <!-- Post Content -->
                 <div class="content">
