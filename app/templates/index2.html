@@ -31,7 +31,7 @@
 					<h2 class="text-center portfolio-text">Latest Articles</h2>
 					<h3 class='article-cat'>News</h3>
 					<div class="row">
-						{% for post in types.news %}
+						{% for post in types.news if types.news%}
 							<div class="col-md-6 col-sm-6 col-xs-12 work-space">
 								<a href="{{url_for('article', id=post.id)}}">
 			                		<div class="featured-img">
@@ -50,7 +50,7 @@
 					</div>
 					<h3 class='article-cat'>Articles</h3>
 					<div class="row">
-						{% for post in types.articles %}
+						{% for post in types.articles if types.articles %}
 							<div class="col-md-6 col-sm-6 col-xs-12 work-space">
 								<a href="{{url_for('article', id=post.id)}}">
 			                		<div class="featured-img">
@@ -88,7 +88,7 @@
 					</div>
 					<h3 class='article-cat'>Datesheets</h3>
 					<div class="row">
-						{% for post in types.date-sheets %}
+						{% for post in types.date-sheets if types.date-sheets%}
 							<div class="col-md-6 col-sm-6 col-xs-12 work-space">
 								<a href="{{url_for('article', id=post.id)}}">
 			                		<div class="featured-img">
@@ -107,7 +107,7 @@
 					</div>
 					<h3 class='article-cat'>Syllabus</h3>
 					<div class="row">
-						{% for post in types.syllabus %}
+						{% for post in types.syllabus if types.syllabus %}
 							<div class="col-md-6 col-sm-6 col-xs-12 work-space">
 								<a href="{{url_for('article', id=post.id)}}">
 			                		<div class="featured-img">
