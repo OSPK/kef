@@ -384,7 +384,9 @@ h2.portfolio-text::after {
     float: left;
     position: relative;
 }
-
+.text-center .img-responsive {
+    margin: auto;
+}
 .program_vars {}
 
 @keyframes imagehover {
