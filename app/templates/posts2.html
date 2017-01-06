@@ -31,11 +31,11 @@
         <div class="col-page col-sm-4 col-md-5">
           <a href="" class="black fondo-publicacion-home">
             <div class="img-publicacion-principal-home">
-              <img class="" src="{{url_for('static', filename=post[0].featured_image)}}">
+              <img class="" src="{{url_for('static', filename=posts[0].featured_image)}}">
             </div>
             <div class="contenido-publicacion-principal-home">
-              <h3>{{post[0].title}}</h3>
-              <p>{{post[0].content[:150]|striptags}}<span>...</span></p>
+              <h3>{{posts[0].title}}</h3>
+              <p>{{posts[0].content[:150]|striptags}}<span>...</span></p>
             </div>
             <div class="mascara-enlace-blog-home">
               <span>Read More </span>
