@@ -28,6 +28,7 @@
     <div class="">
       <h2>Latest  <b>{{posts[0].post_type}}</b></h2>
       <div class="row-page row">
+      	{% if posts[0] %}
         <div class="col-page col-sm-4 col-md-4">
           <a href="{{url_for('article', id=posts[0].id)}}" class="fondo-publicacion-home">
             <div class="img-publicacion-home">
@@ -42,6 +43,8 @@
             </div>
           </a>
         </div>
+        {% endif %}
+        {% if posts[1] %}
         <div class="col-page col-sm-4 col-md-4">
           <a href="{{url_for('article', id=posts[1].id)}}" class="fondo-publicacion-home">
             <div class="img-publicacion-home">
@@ -56,6 +59,8 @@
             </div>
           </a>
         </div>
+        {% endif %}
+        {% if posts[2] %}
         <div class="col-page col-sm-4 col-md-4">
           <a href="{{url_for('article', id=posts[2].id)}}" class="fondo-publicacion-home">
             <div class="img-publicacion-home">
@@ -70,6 +75,8 @@
             </div>
           </a>
         </div>
+        {% endif %}
+        {% if posts[3] %}
         <div class="col-page col-sm-4 col-md-5">
           <a href="{{url_for('article', id=posts[3].id)}}" class="fondo-publicacion-home">
             <div class="img-publicacion-home">
@@ -84,6 +91,8 @@
             </div>
           </a>
         </div>
+        {% endif %}
+        {% if posts[4] %}
         <div class="col-page col-sm-4 col-md-4">
           <a href="{{url_for('article', id=posts[4].id)}}" class="fondo-publicacion-home">
             <div class="img-publicacion-home">
@@ -98,6 +107,8 @@
             </div>
           </a>
         </div>
+        {% endif %}
+        {% if posts[5] %}
         <div class="col-page col-sm-4 col-md-3">
           <a href="{{url_for('article', id=posts[5].id)}}" class="fondo-publicacion-home">
             <div class="img-publicacion-home">
@@ -112,6 +123,7 @@
             </div>
           </a>
         </div>
+        {% endif %}
       </div>
     </div>
   </div>
