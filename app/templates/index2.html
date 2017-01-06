@@ -43,6 +43,9 @@
 			                		<h3>{{post.title}}</h3>
 			                	</a>
 							</div>
+							{% if (loop.index == 2) %}
+							hey
+							{% endif %}
 						{% endfor %}
 					</div>
 					<h3 class='article-cat'>Articles</h3>
