@@ -142,7 +142,7 @@
 					<h1 style="margin-top:0px;">{{post.title}}</h1>
 					<small>Published: {{post.post_date}}</small>
 					<h4>{{post.meta_description}}</h4>
-					<button class="btn btn-primary pull-right">Read More</button>
+					<a href="{{url_for('article', id=post.id)}}" class="btn btn-primary pull-right">Read More</a>
 				</div>
 			</div>
 			{% endif %}
