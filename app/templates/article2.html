@@ -24,34 +24,19 @@ body {
 
                 <!-- Title -->
                 <h1>{{post.title}}</h1>
-
-                <!-- Author -->
-                <p class="lead">
-                    by <a href="#">Start Bootstrap</a>
-                </p>
-
                 <hr>
-
                 <!-- Date/Time -->
-                <p><span class="glyphicon glyphicon-time"></span> Posted on August 24, 2013 at 9:00 PM</p>
-
+                <p><span class="glyphicon glyphicon-time"></span> Posted on {{post.post_date}}</p>
                 <hr>
-
                 <!-- Preview Image -->
                 <img class="img-responsive" src="{{url_for('static', filename=post.featured_image)}}" alt="">
-
                 <hr>
-
                 <!-- Post Content -->
                 <div class="content">
                 	{{post.content|safe|nl2br}}
                 </div>
-
                 <hr>
-
                 <!-- Blog Comments -->
-
-                <!-- Comments Form -->
                 <div id="disqus_thread"></div>
 				<script>
 				var disqus_config = function () {
@@ -67,7 +52,7 @@ body {
 				})();
 				</script>
 				<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-
+				<br>
             </div>
 
             <!-- Blog Sidebar Widgets Column -->
