@@ -120,6 +120,7 @@ class Programs(db.Model):
     district = db.Column(db.Text())
     province = db.Column(db.Text())
     institute_type = db.Column(db.Text())
+    posts    = db.relationship('Posts', backref='program', lazy='joined')
     
 
     # def __init__(self, username, email):
@@ -137,6 +138,8 @@ class Posts(db.Model):
     post_date = db.Column(db.DateTime, nullable=True)
     title = db.Column(db.String(512), nullable=False)
     university_id = db.Column(db.Integer, db.ForeignKey('universities.id'))
+    program_id = db.Column(db.Integer, db.ForeignKey('programs.id'))
+    subject = db.Column(db.String(512))
     meta_title = db.Column(db.String(512))
     meta_description = db.Column(db.String(512))
     featured_image = db.Column(db.Unicode(128))
