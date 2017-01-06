@@ -44,7 +44,7 @@
 			                	</a>
 							</div>
 							{% if (loop.index == 2) %}
-							hey
+							</div><div class="row">
 							{% endif %}
 						{% endfor %}
 					</div>
@@ -62,6 +62,9 @@
 			                		<h3>{{post.title}}</h3>
 			                	</a>
 							</div>
+							{% if (loop.index == 2) %}
+							</div><div class="row">
+							{% endif %}
 						{% endfor %}
 					</div>
 				</div>
