@@ -156,6 +156,12 @@ class UserModelView(ModelView):
     column_list=['id', 'username']
     form_columns=['username', 'password']
 
+    def after_model_change(self, form, model, is_created):
+         password = form.password
+         model.set_password(password)
+         # if is_created: # create the table just once
+         #     #
+
 admin = Admin(app, template_mode='bootstrap3')
 admin.add_view(UniModelView(Universities, db.session))
 admin.add_view(MyModelView(Colleges, db.session))
