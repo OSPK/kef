@@ -149,12 +149,17 @@ class MyFileAdmin(FileAdmin):
     def is_accessible(self):
         return current_user.is_authenticated
 
+class UserModelView(ModelView):
+    def is_accessible(self):
+        return current_user.is_authenticated
+
 admin = Admin(app, template_mode='bootstrap3')
 admin.add_view(UniModelView(Universities, db.session))
 admin.add_view(MyModelView(Colleges, db.session))
 admin.add_view(ProgAdmin(Programs, db.session))
 admin.add_view(PostsView(Posts, db.session))
 admin.add_view(ImageView(Image, db.session))
+admin.add_view(UserModelView(User, db.session))
 admin.add_link(MenuLink(name='Site', category='', url="/"))
 admin.add_link(MenuLink(name='Logout', category='', url="/logout"))
 # admin.add_view(MyFileAdmin(file_path, '/static/', name='Static Files'))
