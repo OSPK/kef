@@ -22,7 +22,7 @@
 		</div>
 	</div>
 </div>
-
+{% if posts[30] %}
 <section class="publicaciones-blog-home">
   <div class="container">
     <div class="">
@@ -128,12 +128,12 @@
     </div>
   </div>
 </section>
-
+{% endif %}
 <div class="topmargin container">
 	<div class="row">
 		<div class="col-md-8">
 		{% for post in posts %}
-			{% if loop.index > 6 %}
+			{% if loop.index > 0 %}
 			<div class="row well">
 				<div class="col-md-3">
 					<img src="{{url_for('static', filename=post.featured_image)}}" alt="">
