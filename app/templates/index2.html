@@ -129,6 +129,13 @@
 			</div>
 			<div class="col-md-4">.</div>
 		</div>
+		<div class="row">
+			{% for video in videos %}
+				<div class="col-md-4">
+					{{video.embed_code|safe}}
+				</div>
+			{% endfor %}
+		</div>
 	</div>
 </div>
 {% endblock %}
