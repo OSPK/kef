@@ -1,7 +1,7 @@
 import os
 import os.path as op
 from flask import request, render_template, redirect, url_for, flash
-from .models import Universities, Colleges, Programs, User, Posts, Image
+from .models import Universities, Colleges, Programs, User, Posts, Image, Video
 from app import app, db, login_manager
 from flask_admin import Admin, form
 from flask_admin.contrib.sqla import ModelView
@@ -179,6 +179,7 @@ admin.add_view(MyModelView(Colleges, db.session))
 admin.add_view(ProgAdmin(Programs, db.session))
 admin.add_view(PostsView(Posts, db.session))
 admin.add_view(ImageView(Image, db.session))
+admin.add_view(ModelView(Video, db.session))
 admin.add_link(MenuLink(name='Site', category='', url="/"))
 admin.add_link(MenuLink(name='Logout', category='', url="/logout"))
 # admin.add_view(MyFileAdmin(file_path, '/static/', name='Static Files'))
