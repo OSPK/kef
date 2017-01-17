@@ -227,7 +227,7 @@ def logout():
 
 @app.route('/')
 def index():
-    types = {'news':'', 'articles':'', 'past-papers':'', 'date-sheets':'', 'syllabus':''}
+    types = {}
     for type in types:
         types[type] = Posts.query.filter_by(post_type=type).limit(4).all()
     return render_template('index2.html', types=types)
