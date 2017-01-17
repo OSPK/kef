@@ -99,7 +99,7 @@ class PostsView(ModelView):
                                 ('results', 'Results'),
                                 ('scholarships', 'Scholarships'),
                                 ('career-counselling', 'Career Counselling'),
-                                ('success-stories', 'success-stories'),
+                                ('success-stories', 'Success Stories'),
                                 ('my-teachers', 'My Teachers')
                                 ]
                     }
