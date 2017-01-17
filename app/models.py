@@ -157,3 +157,13 @@ class Image(db.Model):
 
     def __unicode__(self):
         return self.name
+
+
+class Video(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.Unicode(64))
+    embed_code = db.Column(db.Unicode(1528))
+    img = db.Column(db.Unicode(128))
+
+    def __unicode__(self):
+        return self.title
