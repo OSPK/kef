@@ -95,7 +95,13 @@ class PostsView(ModelView):
                                 ('date-sheets', 'Date Sheet'),
                                 ('syllabus', 'Syllabus'),
                                 ('news', 'News'),
-                                ('notes', 'Notes')]
+                                ('notes', 'Notes'),
+                                ('results', 'Results'),
+                                ('scholarships', 'Scholarships'),
+                                ('career-counselling', 'Career Counselling'),
+                                ('success-stories', 'success-stories'),
+                                ('my-teachers', 'My Teachers')
+                                ]
                     }
     form_extra_fields = {
         'featured_image': form.ImageUploadField('Featured Image',
