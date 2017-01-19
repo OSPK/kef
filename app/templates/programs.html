@@ -6,21 +6,12 @@
 <div class="topmargin container">
 	<div class="row">
 		<div class="col-md-8 well">
-			<h1>{{university.uni_name}} <a href="/admin/universities/edit/?url=%2Fadmin%2Funiversities%2F&id={{university.id}}">(edit)</a></h1>
+			<h1>{{university.uni_name}}</h1>
 			<ol>
 			{% for program in programs %}
 				<li class="program_list_item"><a href='{{url_for("program", id=program.id)}}'>{{program.degree}} - {{program.title}}</a>
-
-				{% if current_user.is_authenticated %}
-				<form method="post" action="/program/{{program.id}}/delete" class="pull-right"><a class="btn btn-primary btn-xs pull-right" href="/admin/programs/edit/?url=%2Fadmin%2Fprograms%2F&id={{program.id}}">Edit</a><button type="submit" class="btn btn-danger btn-xs">Delete</button></form></li><br>
-				{% endif %}
 			{% endfor %}
 			</ol>
-			{% if current_user.is_authenticated %}
-			<form method="post" action="/program/{{university.id}}/add">
-				<button class="btn btn-block">Add New Program</button>
-			</form>
-			{% endif %}
 		</div>
 		<div class="col-md-4 well">
 			<button class="btn btn-lg btn-block" onclick="window.history.back()">Go Back</button>

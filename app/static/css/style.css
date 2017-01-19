@@ -33,8 +33,12 @@ iframe {
 img {
     max-width: 100%;
 }
+.margin-tb {
+    margin-top:10px;
+    margin-bottom:10px;
+}
 .main {
-	margin-top: 20px;
+	margin-top: 0px;
 }
 .bg {
 	background: url("/static/images/bg1.jpg");
@@ -458,7 +462,22 @@ h2.portfolio-text::after {
 .active {
     color: #fff !important;
 }
-
+.nav-justified {
+    background: #bf261b;
+}
+.nav-justified li a {
+    color:white;
+    font-weight: bold;
+}
+.nav-justified li a:hover {
+    color:black;
+}
+.nav-justified>.dropdown .dropdown-menu {
+    background: #402c2b;
+}
+.nav-justified.nav .open>a, .nav-justified.nav .open>a:focus, .nav-justified.nav .open>a:hover {
+    background-color: #402c2b;
+}
 .nav li a:focus {
     background: #212A3F;
     color: #fff;
