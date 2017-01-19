@@ -23,6 +23,7 @@ class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), unique=True, primary_key=True)
     password = db.Column(db.String(264))
+    role = db.Column(db.String(264))
 
     def __init__(self, username=None, password=None):
         if username is not None:
