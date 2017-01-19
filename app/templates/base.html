@@ -7,7 +7,7 @@
 
 	<link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
 	<link href="{{ url_for('static', filename='css/lightbox.css') }}" rel="stylesheet">
-	<link href="{{ url_for('static', filename='css/style.css') }}?5" rel="stylesheet">
+	<link href="{{ url_for('static', filename='css/style.css') }}?65" rel="stylesheet">
 	<link href='http://fonts.googleapis.com/css?family=Poppins:400,600,700,500,300' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Roboto:400,900italic,900,700italic,700,400italic,500,500italic,300,100italic,100,300italic' rel='stylesheet' type='text/css'>
 
@@ -42,33 +42,40 @@
 </style>
 </head>
 <body>
-	<header class="header">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-4 ">
-					<div class="navbar-header">
-						    <button type="button" class="navbar-toggle menu-button" data-toggle="collapse" data-target="#myNavbar">
-						        <span class="glyphicon glyphicon-align-justify"></span>
-						    </button>
-	      					<a class="navbar-brand logo" href="/">Educator.com.pk</a>
-	    			</div>
-				</div>
-				<div class="col-md-8">
-					<nav class="collapse navbar-collapse" id="myNavbar" role="navigation">
-						<ul class="nav navbar-nav navbar-right menu">
-								<li><a href="/" class="page-scroll">Home</a></li>
-								<li><a href="/news" class="page-scroll">News</a></li>
-								<li><a href="/articles" class="page-scroll">Articles</a></li>
-								<li><a href="/past-papers" class="page-scroll">Past Papers</a></li>
-								<li><a href="/date-sheets" class="page-scroll">Datesheets</a></li>
-								<li><a href="/syllabus" class="page-scroll">Syllabus</a></li>
-								<li><a href="/notes" class="page-scroll">Notes</a></li>
-						</ul>
-					</nav>
-				</div>
-			</div>
-		</div>
-	</header>
+	<div class="container margin-tb">
+		<div class="row">
+	    	<div class="col-sm-2">
+	    		<a href="/" title="">
+	    			<img class="img-responsive" src="/static/images/logo.png?2" alt="">
+	    		</a>
+	    	</div>
+	    	<div class="col-sm-10">
+	    		<img src="/static/images/960x90.png" alt="">
+	    	</div>
+	    </div>
+    </div>
+	<div class="masthead">
+		<nav>
+		  <ul class="nav nav-justified">
+		    <li><a href="/" class="page-scroll">Home</a></li>
+			<li><a href="/news" class="page-scroll">News</a></li>
+			<li><a href="/articles" class="page-scroll">Articles</a></li>
+			<li><a href="/past-papers" class="page-scroll">Past Papers</a></li>
+			<li><a href="/date-sheets" class="page-scroll">Datesheets</a></li>
+			<li><a href="/syllabus" class="page-scroll">Syllabus</a></li>
+			<li><a href="/notes" class="page-scroll">Notes</a></li>
+			<li class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#">More
+				<span class="caret"></span></a>
+				<ul class="dropdown-menu">
+					<li><a href="#">Videos</a></li>
+					<li><a href="#">Success Stories</a></li>
+					<li><a href="#">My Teachers</a></li>
+				</ul>
+			</li>
+		  </ul>
+		</nav>
+	</div>
 
 	<div class="container-fluid main {% block content_class %}{% endblock %}">
 		{% block content %}
