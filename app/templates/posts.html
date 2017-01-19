@@ -1,22 +1,139 @@
 {% extends "base.html" %}
 
-
-
-{% block content_class %}bg{% endblock %}
-
 {% block content %}
-<style>
-.article {
-	padding:1rem 2rem;
-}
-.featured-img img {
-	width:100%;
-}
-</style>
+<div class="main hidden" id="page-top">
+	<div class="row">
+		<div class="col-md-12 some-notes">
+			<div class="title">
+
+                <h2>Welcome To Karwan e ilm</h2>
+            </div>
+            <div class="desc">
+                <p>Karwan e ilm is a free resources for students all over Pakistan to seek and get affordable higher education.</p>
+            </div>
+		</div>
+	</div>
+</div>
+
+<div class="features" id="section2">
+	<div class="container">
+		<div class="row">
+			{% include 'search.html' %}
+		</div>
+	</div>
+</div>
+{% if posts[30] %}
+<section class="publicaciones-blog-home">
+  <div class="container">
+    <div class="">
+      <h2>Latest  <b>{% if posts[0] %}{{posts[0].post_type}}{% endif %}</b></h2>
+      <div class="row-page row">
+      	{% if posts[0] %}
+        <div class="col-page col-sm-4 col-md-4">
+          <a href="{{url_for('article', id=posts[0].id)}}" class="fondo-publicacion-home">
+            <div class="img-publicacion-home">
+              <img class="img-responsive" src="{{url_for('static', filename=posts[0].featured_image)}}">
+            </div>
+            <div class="contenido-publicacion-home">
+              <h3>{{posts[0].title}}</h3>
+              <p>{{posts[0].content[:150]|striptags}}<span>...</span></p>
+            </div>
+            <div class="mascara-enlace-blog-home">
+              <span>Read More </span>
+            </div>
+          </a>
+        </div>
+        {% endif %}
+        {% if posts[1] %}
+        <div class="col-page col-sm-4 col-md-4">
+          <a href="{{url_for('article', id=posts[1].id)}}" class="fondo-publicacion-home">
+            <div class="img-publicacion-home">
+              <img class="img-responsive" src="{{url_for('static', filename=posts[1].featured_image)}}">
+            </div>
+            <div class="contenido-publicacion-home">
+              <h3>{{posts[1].title}}</h3>
+              <p>{{posts[1].content[:150]|striptags}}<span>...</span></p>
+            </div>
+            <div class="mascara-enlace-blog-home">
+              <span>Read More </span>
+            </div>
+          </a>
+        </div>
+        {% endif %}
+        {% if posts[2] %}
+        <div class="col-page col-sm-4 col-md-4">
+          <a href="{{url_for('article', id=posts[2].id)}}" class="fondo-publicacion-home">
+            <div class="img-publicacion-home">
+              <img class="img-responsive" src="{{url_for('static', filename=posts[2].featured_image)}}">
+            </div>
+            <div class="contenido-publicacion-home">
+              <h3>{{posts[2].title}}</h3>
+              <p>{{posts[2].content[:150]|striptags}}<span>...</span></p>
+            </div>
+            <div class="mascara-enlace-blog-home">
+              <span>Read More </span>
+            </div>
+          </a>
+        </div>
+        {% endif %}
+        {% if posts[3] %}
+        <div class="col-page col-sm-4 col-md-5">
+          <a href="{{url_for('article', id=posts[3].id)}}" class="fondo-publicacion-home">
+            <div class="img-publicacion-home">
+              <img class="img-responsive" src="{{url_for('static', filename=posts[3].featured_image)}}">
+            </div>
+            <div class="contenido-publicacion-home">
+              <h3>{{posts[3].title}}</h3>
+              <p>{{posts[3].content[:150]|striptags}}<span>...</span></p>
+            </div>
+            <div class="mascara-enlace-blog-home">
+              <span>Read More </span>
+            </div>
+          </a>
+        </div>
+        {% endif %}
+        {% if posts[4] %}
+        <div class="col-page col-sm-4 col-md-4">
+          <a href="{{url_for('article', id=posts[4].id)}}" class="fondo-publicacion-home">
+            <div class="img-publicacion-home">
+              <img class="img-responsive" src="{{url_for('static', filename=posts[4].featured_image)}}">
+            </div>
+            <div class="contenido-publicacion-home">
+              <h3>{{posts[4].title}}</h3>
+              <p>{{posts[4].content[:150]|striptags}}<span>...</span></p>
+            </div>
+            <div class="mascara-enlace-blog-home">
+              <span>Read More </span>
+            </div>
+          </a>
+        </div>
+        {% endif %}
+        {% if posts[5] %}
+        <div class="col-page col-sm-4 col-md-3">
+          <a href="{{url_for('article', id=posts[5].id)}}" class="fondo-publicacion-home">
+            <div class="img-publicacion-home">
+              <img class="img-responsive" src="{{url_for('static', filename=posts[5].featured_image)}}">
+            </div>
+            <div class="contenido-publicacion-home">
+              <h3>{{posts[5].title}}</h3>
+              <p>{{posts[5].content[:150]|striptags}}<span>...</span></p>
+            </div>
+            <div class="mascara-enlace-blog-home">
+              <span>Read More </span>
+            </div>
+          </a>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
 <div class="topmargin container">
 	<div class="row">
 		<div class="col-md-8">
 		{% for post in posts %}
+			{% if loop.index >= 0 %}
 			<div class="row well">
 				<div class="col-md-3">
 					<img src="{{url_for('static', filename=post.featured_image)}}" alt="">
@@ -25,13 +142,21 @@
 					<h1 style="margin-top:0px;">{{post.title}}</h1>
 					<small>Published: {{post.post_date}}</small>
 					<h4>{{post.meta_description}}</h4>
-					<button class="btn btn-primary pull-right">Read More</button>
+					<a href="{{url_for('article', id=post.id)}}" class="btn btn-primary pull-right">Read More</a>
 				</div>
 			</div>
+			{% endif %}
 		{% endfor %}
 		</div>
-		<div class="col-md-4 well">
-
+		<div class="col-md-4">
+            {% set widgets = widget_maker('posts-list', category=type) %}
+            {% for widget in widgets %}
+                <div class="widget">
+                    <h3 class='widget-header'>{{widget.title}}</h3>
+                    <div class="widget-content">{{widget.content|safe}}</div>
+                    <div class="widget-footer"></div>
+                </div><br>
+            {% endfor %}
 		</div>
 	</div>
 </div><br><hr><br>
