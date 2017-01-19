@@ -159,8 +159,8 @@ class UserModelView(ModelView):
     def is_accessible(self):
         return current_user.is_authenticated
 
-    column_list=['id', 'username']
-    form_columns=['username', 'password']
+    column_list=['id', 'username', 'role']
+    form_columns=['username', 'password', 'role']
 
     def after_model_change(self, form, model, is_created):
          password = form.password.data
