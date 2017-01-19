@@ -24,27 +24,35 @@
 </div>
 <div class="topmargin container">
 	<div class="row">
-		<table class="table table-bordered table-hover">
-			<thead>
-				<tr>
-					<th>Degree</th>
-					<th>Title</th>
-					<th>University</th>
-					<th>Duration</th>
-				</tr>
-			</thead>
-			<tbody>
-				{% for p in programs %}
-				<tr>
-					
-					<td>{{p.degree}}</td>
-					<td><a href="{{url_for('program', id=p.id)}}" title="">{{p.title}}</a></td>
-					<td><a href="{{url_for('programs', uni_id=p.university.id)}}" title="">{{p.university}}</a></td>
-					<td>{{p.duration|truncate(10) if p.duration != None}}</td>
-				</tr>
-				{% endfor %}
-			</tbody>
-		</table>
+		<div class="col-md-8">
+				<div class="row text-center">
+					<small>{{programs|length}}</small> results
+				</div>
+			{% for p in programs %}
+			<div class="well">
+				{% set degree = "" %}
+				{% if p.degree and p.degree != "NULL" %}
+					{% set degree = p.degree %}
+				{% endif %}
+				<h2><a href="{{url_for('program', id=p.id)}}" title="">{{ degree }} - {{p.title}}</a></h2>
+				
+				<h3><a href="{{url_for('programs', uni_id=p.university.id)}}" title="">{{p.university}}</a></h3>
+				<td>{{p.duration|truncate(10) if p.duration != None}}</td>
+			</div>
+			{% endfor %}
+		</div>
+		<div class="col-md-4">
+            <br>
+            {% set widgets = widget_maker('homepage') %}
+            {% for widget in widgets %}
+                <div class="widget">
+                    <h3 class='widget-header'>{{widget.title}}</h3>
+                    <div class="widget-content">{{widget.content|safe}}</div>
+                    <div class="widget-footer"></div>
+                </div><br>
+            {% endfor %}
+        </div>
+
 	</div>
 </div><br><hr><br>
 {% endblock %}

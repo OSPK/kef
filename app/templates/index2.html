@@ -124,17 +124,30 @@
 							{% endif %}
 						{% endfor %}
 					</div>
+					<h3 class='article-cat'>Videos</h3>
+					<div class="row">
+						{% for video in videos %}
+							<div class="col-md-6 col-sm-6 col-xs-12 work-space">
+								{{video.embed_code|safe}}
+							</div>
+							{% if (loop.index == 2) %}
+							</div><div class="row">
+							{% endif %}
+						{% endfor %}
+					</div>
 				</div>
 			</div>
-			<div class="col-md-4">.</div>
-		</div>
-		<div class="row">
-			<h3 class='article-cat text-center'>Videos</h3>
-			{% for video in videos %}
-				<div class="col-md-4">
-					{{video.embed_code|safe}}
-				</div>
-			{% endfor %}
+			<div class="col-md-4">
+				<br>
+				{% set widgets = widget_maker('homepage') %}
+				{% for widget in widgets %}
+					<div class="widget">
+						<h3 class='widget-header'>{{widget.title}}</h3>
+						<div class="widget-content">{{widget.content|safe}}</div>
+						<div class="widget-footer"></div>
+					</div><br>
+				{% endfor %}
+			</div>
 		</div>
 	</div>
 </div>

@@ -2,6 +2,21 @@ from app import db
 from flask_login import UserMixin
 from werkzeug import generate_password_hash, check_password_hash
 
+relationship_table=db.Table('relationship_table',                            
+                             db.Column('post_id', db.Integer,db.ForeignKey('posts.id'), nullable=True),
+                             db.Column('widget_id',db.Integer,db.ForeignKey('widgets.id'),nullable=True),
+                             db.PrimaryKeyConstraint('post_id', 'widget_id') )
+
+relationship_table2=db.Table('relationship_table2',                            
+                             db.Column('university_id', db.Integer,db.ForeignKey('universities.id'), nullable=True),
+                             db.Column('widget_id',db.Integer,db.ForeignKey('widgets.id'),nullable=True),
+                             db.PrimaryKeyConstraint('university_id', 'widget_id') )
+
+relationship_table3=db.Table('relationship_table3',                            
+                             db.Column('program_id', db.Integer,db.ForeignKey('programs.id'), nullable=True),
+                             db.Column('widget_id',db.Integer,db.ForeignKey('widgets.id'),nullable=True),
+                             db.PrimaryKeyConstraint('program_id', 'widget_id') )
+
 class User(UserMixin, db.Model):
     __tablename__ = 'users'
 
@@ -47,6 +62,7 @@ class Universities(db.Model):
     programs = db.relationship('Programs', backref='university', lazy='joined')
     colleges = db.relationship('Colleges', backref='university', lazy='joined')
     posts    = db.relationship('Posts', backref='university', lazy='joined')
+    widgets    = db.relationship('Widgets', secondary=relationship_table2, backref='university', lazy='joined')
     uni_name = db.Column(db.String(512), nullable=False)
     city = db.Column(db.String(512), nullable=False)
     province = db.Column(db.String(512), nullable=False)
@@ -121,6 +137,7 @@ class Programs(db.Model):
     province = db.Column(db.Text())
     institute_type = db.Column(db.Text())
     posts    = db.relationship('Posts', backref='program', lazy='joined')
+    widgets    = db.relationship('Widgets', secondary=relationship_table3, backref='program', lazy='joined')
     
 
     # def __init__(self, username, email):
@@ -144,10 +161,14 @@ class Posts(db.Model):
     meta_description = db.Column(db.String(512))
     featured_image = db.Column(db.Unicode(128))
     content = db.Column(db.Text())
+    widgets    = db.relationship('Widgets', secondary=relationship_table, backref='posts', lazy='joined')
     
 
     def __init__(self, **kwargs):
         super(Posts, self).__init__(**kwargs)
+
+    def __repr__(self):
+        return self.title
 
 class Image(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -155,7 +176,7 @@ class Image(db.Model):
     path = db.Column(db.Unicode(128))
     img = db.Column(db.Unicode(128))
 
-    def __unicode__(self):
+    def __repr__(self):
         return self.name
 
 
@@ -165,5 +186,17 @@ class Video(db.Model):
     embed_code = db.Column(db.Unicode(1528))
     img = db.Column(db.Unicode(128))
 
-    def __unicode__(self):
+    def __repr__(self):
+        return self.title
+
+class Widgets(db.Model):
+    __tablename__ = 'widgets'
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.Unicode(64))
+    content = db.Column(db.Text())
+    homepage = db.Column(db.Unicode(64))
+    allpages = db.Column(db.Unicode(64))
+    categories = db.Column(db.Unicode(64))
+
+    def __repr__(self):
         return self.title

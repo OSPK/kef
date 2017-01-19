@@ -1,7 +1,7 @@
 import os
 import os.path as op
 from flask import request, render_template, redirect, url_for, flash
-from .models import Universities, Colleges, Programs, User, Posts, Image, Video
+from .models import Universities, Colleges, Programs, User, Posts, Image, Video, Widgets
 from app import app, db, login_manager
 from flask_admin import Admin, form
 from flask_admin.contrib.sqla import ModelView
@@ -172,6 +172,32 @@ class UserModelView(ModelView):
          #     db.session.commit()
          #     #
 
+class WidgetsView(ModelView):
+    def is_accessible(self):
+        return current_user.is_authenticated
+
+    form_choices = {'homepage': [('yes', 'Yes - Show on Home Page'),
+                                ('no', 'No - Dont show on homepage') ],
+                    'allpages': [('yes', 'Yes - Show on All Page'),
+                                ('no', 'No - Show only on specified pages') ],
+                    'categories': [ ('all', 'All Categories'),
+                                ('articles', 'Article'),
+                                ('past-papers', 'Past Paper'),
+                                ('date-sheets', 'Date Sheet'),
+                                ('syllabus', 'Syllabus'),
+                                ('news', 'News'),
+                                ('notes', 'Notes'),
+                                ('results', 'Results'),
+                                ('scholarships', 'Scholarships'),
+                                ('career-counselling', 'Career Counselling'),
+                                ('success-stories', 'Success Stories'),
+                                ('my-teachers', 'My Teachers')
+                                ]
+                    }
+
+    create_template = 'edit.html'
+    edit_template = 'edit.html'
+
 admin = Admin(app, template_mode='bootstrap3')
 admin.add_view(UserModelView(User, db.session))
 admin.add_view(UniModelView(Universities, db.session))
@@ -179,7 +205,8 @@ admin.add_view(MyModelView(Colleges, db.session))
 admin.add_view(ProgAdmin(Programs, db.session))
 admin.add_view(PostsView(Posts, db.session))
 admin.add_view(ImageView(Image, db.session))
-admin.add_view(ModelView(Video, db.session))
+admin.add_view(WidgetsView(Video, db.session))
+admin.add_view(WidgetsView(Widgets, db.session))
 admin.add_link(MenuLink(name='Site', category='', url="/"))
 admin.add_link(MenuLink(name='Logout', category='', url="/logout"))
 # admin.add_view(MyFileAdmin(file_path, '/static/', name='Static Files'))
@@ -190,6 +217,24 @@ PROVINCES = ["Islamabad", "Khyber Pakhtunkhwa", "Punjab", "Sindh", "Balochistan"
 @app.context_processor
 def ctites_provinces():
     return {'cities': CITIES, 'provinces': PROVINCES}
+
+
+def widget_maker(placement, **kwargs):
+    category = kwargs.get('category', '*')
+
+    if placement=='homepage':
+        widget = Widgets.query.filter(Widgets.homepage=='yes').all()
+
+    if placement=='posts-list':
+        widget = Widgets.query.filter((Widgets.allpages=='yes')\
+                | (Widgets.categories==category)\
+                | (Widgets.categories=='all')\
+                ).all()
+
+    return widget
+
+app.jinja_env.globals.update(widget_maker=widget_maker)
+
 
 #ROUTES
 
@@ -242,7 +287,7 @@ def index():
 @app.route('/<type>')
 def posts(type):
     posts = Posts.query.filter_by(post_type=type).all()
-    return render_template('posts2.html', posts=posts, type=type)
+    return render_template('posts.html', posts=posts, type=type)
 
 @app.route('/search/')
 def search():
@@ -283,7 +328,7 @@ def search():
         else:
             universities = Universities.query.all()
 
-    return render_template('universities2.html', universities=universities)
+    return render_template('universities.html', universities=universities)
 
 
 @app.route('/universities')
@@ -348,4 +393,4 @@ def all_programs():
 @app.route('/article/<int:id>/')
 def article(id):
     post = Posts.query.get(id)
-    return render_template('article2.html', post=post)
+    return render_template('article.html', post=post)
