@@ -28,6 +28,8 @@
                 <!-- Preview Image -->
                 <div class="text-center">
                 {% if post.featured_image %}
+                {{post.featured_image|thumbnail('200x200')}}
+                {{post.featured_image}}
                 <img class="img-responsive" src="{{post.featured_image|thumbnail('200x200')}}" alt="">
                 {% endif %}
                 </div>
