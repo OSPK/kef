@@ -27,7 +27,9 @@
                 <hr>
                 <!-- Preview Image -->
                 <div class="text-center">
+                {% if post.featured_image %}
                 <img class="img-responsive" src="{{url_for('static', filename=post.featured_image)}}" alt="">
+                {% endif %}
                 </div>
                 <hr>
                 <!-- Post Content -->

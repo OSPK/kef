@@ -35,7 +35,9 @@
 							<div class="col-md-6 col-sm-6 col-xs-12 work-space">
 								<a href="{{url_for('article', id=post.id)}}">
 			                		<div class="featured-img">
+			                			{% if post.featured_image %}
 			                			<img src="{{url_for('static', filename=post.featured_image)}}"/>
+			                			{% endif %}
 			                		</div>
 			                		<div class="image-hover">
 			                			<i class="glyphicon glyphicon-eye-open"></i>

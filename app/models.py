@@ -160,7 +160,7 @@ class Posts(db.Model):
     subject = db.Column(db.String(512))
     meta_title = db.Column(db.String(512))
     meta_description = db.Column(db.String(512))
-    featured_image = db.Column(db.Unicode(128))
+    featured_image = db.Column(db.Unicode(128), nullable=False)
     content = db.Column(db.Text())
     widgets    = db.relationship('Widgets', secondary=relationship_table, backref='posts', lazy='joined')
     
