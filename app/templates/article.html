@@ -28,7 +28,6 @@
                 <!-- Preview Image -->
                 <div class="text-center">
                 {% if post.featured_image %}
-                <div class="hidden">{{post.featured_image|thumbnail('100x100', crop='fit', quality=100)}}</div>
                 <img class="img-responsive" src="{{url_for('static', filename=post.featured_image)}}" alt="">
                 {% endif %}
                 </div>
