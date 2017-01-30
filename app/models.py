@@ -153,7 +153,7 @@ class Posts(db.Model):
     __tablename__ = 'posts'
     id = db.Column(db.Integer, primary_key=True)
     post_type = db.Column(db.String(512), nullable=False)
-    post_date = db.Column(db.DateTime, nullable=True)
+    post_date = db.Column(db.DateTime, nullable=False)
     title = db.Column(db.String(512), nullable=False)
     university_id = db.Column(db.Integer, db.ForeignKey('universities.id'))
     program_id = db.Column(db.Integer, db.ForeignKey('programs.id'))
