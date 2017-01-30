@@ -13,4 +13,7 @@ HOST = '0.0.0.0'
 
 SECRET_KEY="dfsdfsdf"
 
+MEDIA_FOLDER = os.path.join(basedir, 'app/static/')
+MEDIA_URL = '/static/'
+
 ADMINS = frozenset(['youremail@yourdomain.con'])
