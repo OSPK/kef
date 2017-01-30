@@ -116,8 +116,7 @@ class ImageView(ModelView):
     def _list_thumbnail(view, context, model, name):
         if not model.path:
             return ''
-        # imgpath = url_for('static', filename=form.thumbgen_filename(model.path))
-        imgpath = url_for('static', filename=model.path)
+        imgpath = url_for('static', filename=form.thumbgen_filename(model.path))
         return Markup('<img src="%s">' % imgpath)
     def _list_path(view, context, model, name):
         if not model.path:
