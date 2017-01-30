@@ -167,7 +167,7 @@ class Posts(db.Model):
 
     def __init__(self, **kwargs):
         super(Posts, self).__init__(**kwargs)
-        if not self.post_date:
+        if not post_date:
             self.post_date = datetime.datetime.now()
 
     def __repr__(self):
