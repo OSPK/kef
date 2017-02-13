@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="main hidden" id="page-top">
+	<div class="row">
+		<div class="col-md-12 some-notes">
+			<div class="title">
+
+                <h2>Welcome To Karwan e ilm</h2>
+            </div>
+            <div class="desc">
+                <p>Karwan e ilm is a free resources for students all over Pakistan to seek and get affordable higher education.</p>
+            </div>
+		</div>
+	</div>
+</div>
+
+<div class="features" id="section2">
+	<div class="container">
+		<div class="row">
+			{% include 'search.html' %}
+		</div>
+	</div>
+</div>
+<div class="topmargin container">
+	<div class="row">
+    <div class="col-md-8">
+		{% for video in videos %}
+				<div class="row">
+          <h1 style="margin-top:0px;">{{video.title}}</h1>
+					{{video.embed_code|safe}}
+					
+				</div><br><hr><br>
+		{% endfor %}
+    </div>
+		<div class="col-md-4">
+            {% set widgets = widget_maker('posts-list', category='videos') %}
+            {% for widget in widgets %}
+                <div class="widget">
+                    <h3 class='widget-header'>{{widget.title}}</h3>
+                    <div class="widget-content">{{widget.content|safe}}</div>
+                    <div class="widget-footer"></div>
+                </div><br>
+            {% endfor %}
+		</div>
+	</div>
+</div><br><hr><br>
+{% endblock %}
