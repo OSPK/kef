@@ -289,7 +289,7 @@ def index():
 
 @app.route('/<type>')
 def posts(type):
-    posts = Posts.query.filter_by(post_type=type).all()
+    posts = Posts.query.filter_by(post_type=type).order_by(desc(Posts.post_date).all()
     return render_template('posts.html', posts=posts, type=type)
 
 @app.route('/search/')
