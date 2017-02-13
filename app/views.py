@@ -118,9 +118,9 @@ class ImageView(ModelView):
     def _list_thumbnail(view, context, model, name):
         if not model.path:
             return ''
-        img_thumb = form.thumbgen_filename(model.path).replace('_thumb', '_100x100_fit_100')
+        img_thumb = form.thumbgen_filename(model.path).replace('_thumb', '')
         imgpath = url_for('static', filename=img_thumb)
-        return Markup('<img src="%s">' % imgpath)
+        return Markup('<img width="100" height="100" src="%s">' % imgpath)
     def _list_path(view, context, model, name):
         if not model.path:
             return ''
@@ -281,9 +281,9 @@ def index():
             'success-stories':'', 'my-teachers':''
             }
     for type in types:
-        types[type] = Posts.query.filter_by(post_type=type).limit(4).all()
+        types[type] = Posts.query.filter_by(post_type=type).order_by(desc(Posts.post_date)).limit(4).all()
 
-    videos = Video.query.limit(4).all()
+    videos = Video.query.order_by(desc(Video.id)).limit(4).all()
     return render_template('index2.html', types=types, videos=videos)
 
 
