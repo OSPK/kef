@@ -1,5 +1,6 @@
 import os
 import os.path as op
+import datetime
 from flask import request, render_template, redirect, url_for, flash
 from .models import Universities, Colleges, Programs, User, Posts, Image, Video, Widgets
 from app import app, db, login_manager
@@ -88,7 +89,9 @@ class PostsView(ModelView):
     column_default_sort=('post_date', True)
     column_searchable_list = ['title', 'post_type', 'program.title' ,'university.uni_name']
     form_overrides = dict(text=CKTextAreaField)
-
+    form_args = dict(
+                post_date=dict(default=datetime.datetime.now())
+            )
     create_template = 'edit.html'
     edit_template = 'edit.html'
 
@@ -194,12 +197,23 @@ class WidgetsView(ModelView):
                                 ('scholarships', 'Scholarships'),
                                 ('career-counselling', 'Career Counselling'),
                                 ('success-stories', 'Success Stories'),
-                                ('my-teachers', 'My Teachers')
+                                ('my-teachers', 'My Teachers'),
+                                ('videos', 'Videos')
                                 ]
                     }
 
     create_template = 'edit.html'
     edit_template = 'edit.html'
+
+class VideosView(ModelView):
+    def is_accessible(self):
+        return current_user.is_authenticated
+
+    form_extra_fields = {
+        'img': form.ImageUploadField('Featured Image',
+                                      base_path=file_path)
+    }
+
 
 admin = Admin(app, template_mode='bootstrap3')
 admin.add_view(UserModelView(User, db.session))
@@ -208,7 +222,7 @@ admin.add_view(MyModelView(Colleges, db.session))
 admin.add_view(ProgAdmin(Programs, db.session))
 admin.add_view(PostsView(Posts, db.session))
 admin.add_view(ImageView(Image, db.session))
-admin.add_view(WidgetsView(Video, db.session))
+admin.add_view(VideosView(Video, db.session))
 admin.add_view(WidgetsView(Widgets, db.session))
 admin.add_link(MenuLink(name='Site', category='', url="/"))
 admin.add_link(MenuLink(name='Logout', category='', url="/logout"))
@@ -291,6 +305,11 @@ def index():
 def posts(type):
     posts = Posts.query.filter_by(post_type=type).order_by(desc(Posts.post_date)).all()
     return render_template('posts.html', posts=posts, type=type)
+
+@app.route('/videos')
+def videos():
+    videos = Video.query.order_by(desc(Video.id)).all()
+    return render_template('videos.html', videos=videos)
 
 @app.route('/search/')
 def search():
