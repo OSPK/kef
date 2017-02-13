@@ -13,7 +13,7 @@ from jinja2 import evalcontextfilter, Markup, escape
 from sqlalchemy.event import listens_for
 from flask_admin.contrib.fileadmin import FileAdmin
 from flask.ext.admin.menu import MenuLink
-from sqlalchemy import or_,  and_
+from sqlalchemy import or_,  and_, desc
 
 _paragraph_re = re.compile(r'(?:\r\n|\r|\n){2,}')
 
