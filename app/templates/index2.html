@@ -33,7 +33,7 @@
 					<div class="row">
 						{% for post in types.news if types.news%}
 							<div class="col-md-6 col-sm-6 col-xs-12 work-space">
-								<a href="{{url_for('article', id=post.id)}}">
+								<a href="{{url_for('article', id=post.id, slug=post.slugified_title)}}">
 			                		<div class="featured-img">
 			                			{% if post.featured_image %}
 			                			<img src="{{url_for('static', filename=post.featured_image)}}"/>
@@ -43,6 +43,7 @@
 			                			<i class="glyphicon glyphicon-eye-open"></i>
 									 </div>
 			                		<h3>{{post.title}}</h3>
+
 			                	</a>
 							</div>
 							{% if (loop.index == 2) %}
@@ -54,7 +55,7 @@
 					<div class="row">
 						{% for post in types.articles if types.articles %}
 							<div class="col-md-6 col-sm-6 col-xs-12 work-space">
-								<a href="{{url_for('article', id=post.id)}}">
+								<a href="{{url_for('article', id=post.id, slug=post.slugified_title)}}">
 			                		<div class="featured-img">
 			                			<img src="{{url_for('static', filename=post.featured_image)}}"/>
 			                		</div>
@@ -73,7 +74,7 @@
 					<div class="row">
 						{% for post in types['past-papers'] if types['past-papers'] %}
 							<div class="col-md-6 col-sm-6 col-xs-12 work-space">
-								<a href="{{url_for('article', id=post.id)}}">
+								<a href="{{url_for('article', id=post.id, slug=post.slugified_title)}}">
 			                		<div class="featured-img">
 			                			<img src="{{url_for('static', filename=post.featured_image)}}"/>
 			                		</div>
@@ -92,7 +93,7 @@
 					<div class="row">
 						{% for post in types['date-sheets'] if types['date-sheets'] %}
 							<div class="col-md-6 col-sm-6 col-xs-12 work-space">
-								<a href="{{url_for('article', id=post.id)}}">
+								<a href="{{url_for('article', id=post.id, slug=post.slugified_title)}}">
 			                		<div class="featured-img">
 			                			<img src="{{url_for('static', filename=post.featured_image)}}"/>
 			                		</div>
@@ -111,7 +112,7 @@
 					<div class="row">
 						{% for post in types.syllabus if types.syllabus %}
 							<div class="col-md-6 col-sm-6 col-xs-12 work-space">
-								<a href="{{url_for('article', id=post.id)}}">
+								<a href="{{url_for('article', id=post.id, slug=post.slugified_title)}}">
 			                		<div class="featured-img">
 			                			<img src="{{url_for('static', filename=post.featured_image)}}"/>
 			                		</div>

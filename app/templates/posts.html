@@ -30,7 +30,7 @@
       <div class="row-page row">
       	{% if posts[0] %}
         <div class="col-page col-sm-4 col-md-4">
-          <a href="{{url_for('article', id=posts[0].id)}}" class="fondo-publicacion-home">
+          <a href="{{url_for('article', id=posts[0].id, slug=posts[0].slugified_title)}}" class="fondo-publicacion-home">
             <div class="img-publicacion-home">
               {% if posts[0].featured_image %}
               <img class="img-responsive" src="{{url_for('static', filename=posts[0].featured_image)}}">
@@ -48,7 +48,7 @@
         {% endif %}
         {% if posts[1] %}
         <div class="col-page col-sm-4 col-md-4">
-          <a href="{{url_for('article', id=posts[1].id)}}" class="fondo-publicacion-home">
+          <a href="{{url_for('article', id=posts[1].id, slug=posts[1].slugified_title)}}" class="fondo-publicacion-home">
             <div class="img-publicacion-home">
               {% if posts[1].featured_image %}
               <img class="img-responsive" src="{{url_for('static', filename=posts[1].featured_image)}}">
@@ -66,7 +66,7 @@
         {% endif %}
         {% if posts[2] %}
         <div class="col-page col-sm-4 col-md-4">
-          <a href="{{url_for('article', id=posts[2].id)}}" class="fondo-publicacion-home">
+          <a href="{{url_for('article', id=posts[2].id, slug=posts[2].slugified_title)}}" class="fondo-publicacion-home">
             <div class="img-publicacion-home">
               {% if posts[2].featured_image %}
               <img class="img-responsive" src="{{url_for('static', filename=posts[2].featured_image)}}">
@@ -84,7 +84,7 @@
         {% endif %}
         {% if posts[3] %}
         <div class="col-page col-sm-4 col-md-5">
-          <a href="{{url_for('article', id=posts[3].id)}}" class="fondo-publicacion-home">
+          <a href="{{url_for('article', id=posts[3].id, slug=posts[3].slugified_title)}}" class="fondo-publicacion-home">
             <div class="img-publicacion-home">
               {% if posts[3].featured_image %}
               <img class="img-responsive" src="{{url_for('static', filename=posts[3].featured_image)}}">
@@ -102,7 +102,7 @@
         {% endif %}
         {% if posts[4] %}
         <div class="col-page col-sm-4 col-md-4">
-          <a href="{{url_for('article', id=posts[4].id)}}" class="fondo-publicacion-home">
+          <a href="{{url_for('article', id=posts[4].id, slug=posts[4].slugified_title)}}" class="fondo-publicacion-home">
             <div class="img-publicacion-home">
               {% if posts[4].featured_image %}
               <img class="img-responsive" src="{{url_for('static', filename=posts[4].featured_image)}}">
@@ -120,7 +120,7 @@
         {% endif %}
         {% if posts[5] %}
         <div class="col-page col-sm-4 col-md-3">
-          <a href="{{url_for('article', id=posts[5].id)}}" class="fondo-publicacion-home">
+          <a href="{{url_for('article', id=posts[5].id, slug=posts[5].slugified_title)}}" class="fondo-publicacion-home">
             <div class="img-publicacion-home">
               {% if posts[5].featured_image %}
               <img class="img-responsive" src="{{url_for('static', filename=posts[5].featured_image)}}">
@@ -156,7 +156,7 @@
 					<h1 style="margin-top:0px;">{{post.title}}</h1>
 					<small>Published: {{post.post_date}}</small>
 					<h4>{{post.meta_description}}</h4>
-					<a href="{{url_for('article', id=post.id)}}" class="btn btn-primary pull-right">Read More</a>
+					<a href="{{url_for('article', id=post.id, slug=post.slugified_title)}}" class="btn btn-primary pull-right">Read More</a>
 				</div>
 			</div>
 			{% endif %}

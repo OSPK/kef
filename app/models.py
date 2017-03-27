@@ -1,6 +1,8 @@
 from app import db
 from flask_login import UserMixin
 from werkzeug import generate_password_hash, check_password_hash
+from werkzeug.routing import BuildError
+from slugify import slugify
 
 relationship_table=db.Table('relationship_table',                            
                              db.Column('post_id', db.Integer,db.ForeignKey('posts.id'), nullable=True),
@@ -161,7 +163,7 @@ class Posts(db.Model):
     meta_title = db.Column(db.String(512))
     meta_description = db.Column(db.String(512))
     featured_image = db.Column(db.Unicode(218), nullable=False)
-    pdf_attachment = db.Column(db.Unicode(218), nullable=False)
+    pdf_attachment = db.Column(db.Unicode(218), nullable=True)
     content = db.Column(db.Text())
     widgets    = db.relationship('Widgets', secondary=relationship_table, backref='posts', lazy='joined')
     
@@ -170,6 +172,12 @@ class Posts(db.Model):
         super(Posts, self).__init__(**kwargs)
         # if not post_date:
         #     self.post_date = datetime.datetime.now()
+
+
+    @property
+    def slugified_title(self):
+        return slugify(self.title, separator="-")
+
 
     def __repr__(self):
         return self.title
