@@ -27,9 +27,14 @@
                 <hr>
                 <!-- Preview Image -->
                 <div class="text-center">
-                {% if post.featured_image %}
-                <img class="img-responsive" src="{{url_for('static', filename=post.featured_image)}}" alt="">
-                {% endif %}
+                    {% if post.featured_image %}
+                    <img class="img-responsive" src="{{url_for('static', filename=post.featured_image)}}" alt="">
+                    {% endif %}
+                </div>
+                <div class="text-center">
+                    {% if post.pdf_attachment %}
+                    <a href="{{url_for('static', filename=post.pdf_attachment)}}" alt="" download><h3>Download PDF Document</h3></a>
+                    {% endif %}
                 </div>
                 <hr>
                 <!-- Post Content -->

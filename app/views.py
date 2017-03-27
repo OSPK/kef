@@ -110,7 +110,10 @@ class PostsView(ModelView):
                     }
     form_extra_fields = {
         'featured_image': form.ImageUploadField('Featured Image',
-                                      base_path=file_path)
+                                      base_path=file_path),
+        'pdf_attachment': form.FileUploadField('PDF Attachment',
+                                      base_path=file_path,
+                                      allowed_extensions=["pdf"]),
     }
 
 
