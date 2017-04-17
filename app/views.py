@@ -33,6 +33,9 @@ def nl2br(eval_ctx, value):
     return result
 
 
+POSTS_PER_PAGE = 9
+
+
 # Create directory for file fields to use
 file_path = op.join(op.dirname(__file__), 'static')
 try:
@@ -306,7 +309,7 @@ def index():
 
 @app.route('/<type>')
 def posts(type):
-    posts = Posts.query.filter_by(post_type=type).order_by(desc(Posts.post_date)).all()
+    posts = Posts.query.filter_by(post_type=type).order_by(desc(Posts.post_date)).paginate(page, POSTS_PER_PAGE, False)
     return render_template('posts.html', posts=posts, type=type)
 
 @app.route('/videos')
