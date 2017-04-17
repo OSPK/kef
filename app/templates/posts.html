@@ -149,14 +149,17 @@
 			<div class="row well">
 				<div class="col-md-3">
           {% if post.featured_image %}
-					<img class="img-responsive" src="{{ post.featured_image|thumbnail('150x150', crop='fit') }}" alt="" />
+          <a href="{{url_for('article', id=post.id, type=post.post_type, slug=post.slugified_title)}}" class="btn btn-primary pull-right">
+					 <img class="img-responsive" src="{{ post.featured_image|thumbnail('150x150', crop='fit') }}" alt="" />
+          </a>
           {% endif %}
 				</div>
 				<div class="col-md-9">
-					<h1 style="margin-top:0px;">{{post.title}}</h1>
+          <a href="{{url_for('article', id=post.id, type=post.post_type, slug=post.slugified_title)}}" class="btn btn-primary pull-right">
+					 <h1 style="margin-top:0px;">{{post.title}}</h1>
+          </a>
 					<small>Published: {{post.post_date}}</small>
 					<h4>{{post.meta_description}}</h4>
-					<a href="{{url_for('article', id=post.id, type=post.post_type, slug=post.slugified_title)}}" class="btn btn-primary pull-right">Read More</a>
 				</div>
 			</div>
 			{% endif %}
