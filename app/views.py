@@ -33,7 +33,7 @@ def nl2br(eval_ctx, value):
     return result
 
 
-POSTS_PER_PAGE = 9
+POSTS_PER_PAGE = 20
 
 
 # Create directory for file fields to use
