@@ -161,6 +161,11 @@
 			</div>
 			{% endif %}
 		{% endfor %}
+
+    <div id="pagination" class="container">
+    {% if posts.has_prev %}<a id="previous" class="pull-left hidden" href="{{ url_for('posts',page=posts.prev_num) }}">&lt;&lt; Newer posts</a>{% endif %}
+    {% if posts.has_next %}<a id="next" class="pull-right hidden" href="{{ url_for('posts', page=posts.next_num) }}">Older posts &gt;&gt;</a>{% endif %}
+    </div>
 		</div>
 		<div class="col-md-4">
             {% set widgets = widget_maker('posts-list', category=type) %}
