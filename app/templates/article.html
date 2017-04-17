@@ -88,16 +88,15 @@
             <!-- Blog Sidebar Widgets Column -->
             <div class="col-md-3">
                 {% for post in related %}
-                    <div class="row well">
+                    <div class="row">
                         <div class="col-md-12">
                             {% if post.featured_image %}
                             <img src="{{url_for('static', filename=post.featured_image)}}" alt="">
                             {% endif %}
                         </div>
                         <div class="col-md-12">
-                            <h1 style="margin-top:0px;">{{post.title}}</h1>
                             <small>Published: {{post.post_date}}</small>
-                            <h4>{{post.meta_description}}</h4>
+                            <h4 style="margin-top:0px;">{{post.title}}</h4>
                             <a href="{{url_for('article', id=post.id, type=post.post_type, slug=post.slugified_title)}}" class="btn btn-primary pull-right">Read More</a>
                         </div>
                     </div>
