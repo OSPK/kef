@@ -243,7 +243,8 @@ logo:active {
     padding:15px 10px;
 }
 .related-post {
-    border-bottom:1px dotted #cdcdcd;
+    /*border-bottom:1px dotted #cdcdcd;*/
+    margin-bottom:10px;
 }
 .title h2 {
     font-family: 'Roboto', sans-serif;
