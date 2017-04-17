@@ -238,6 +238,13 @@ logo:active {
     float: left;
 }
 
+.related-posts {
+    background-color: #efefef;
+    padding:10px 5px;
+}
+.related-post {
+    border-bottom:1px dotted #cdcdcd;
+}
 .title h2 {
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
