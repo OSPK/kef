@@ -36,7 +36,7 @@
 								<a href="{{url_for('article', id=post.id, type=post.post_type, slug=post.slugified_title)}}">
 			                		<div class="featured-img">
 			                			{% if post.featured_image %}
-			                			<img src="{{url_for('static', filename=post.featured_image)}}"/>
+			                			<img src="{{ post.featured_image|thumbnail('377x200', crop='fit') }}" alt="" />
 			                			{% endif %}
 			                		</div>
 			                		<div class="image-hover">
@@ -57,7 +57,7 @@
 							<div class="col-md-6 col-sm-6 col-xs-12 work-space">
 								<a href="{{url_for('article', id=post.id, type=post.post_type, slug=post.slugified_title)}}">
 			                		<div class="featured-img">
-			                			<img src="{{url_for('static', filename=post.featured_image)}}"/>
+			                			<img src="{{ post.featured_image|thumbnail('300x150', crop='fit') }}" alt="" />
 			                		</div>
 			                		<div class="image-hover">
 			                			<i class="glyphicon glyphicon-eye-open"></i>
@@ -76,7 +76,7 @@
 							<div class="col-md-6 col-sm-6 col-xs-12 work-space">
 								<a href="{{url_for('article', id=post.id, type=post.post_type, slug=post.slugified_title)}}">
 			                		<div class="featured-img">
-			                			<img src="{{url_for('static', filename=post.featured_image)}}"/>
+			                			<img src="{{ post.featured_image|thumbnail('300x150', crop='fit') }}" alt="" />
 			                		</div>
 			                		<div class="image-hover">
 			                			<i class="glyphicon glyphicon-eye-open"></i>
@@ -95,7 +95,7 @@
 							<div class="col-md-6 col-sm-6 col-xs-12 work-space">
 								<a href="{{url_for('article', id=post.id, type=post.post_type, slug=post.slugified_title)}}">
 			                		<div class="featured-img">
-			                			<img src="{{url_for('static', filename=post.featured_image)}}"/>
+			                			<img src="{{ post.featured_image|thumbnail('300x150', crop='fit') }}" alt="" />
 			                		</div>
 			                		<div class="image-hover">
 			                			<i class="glyphicon glyphicon-eye-open"></i>
@@ -114,7 +114,7 @@
 							<div class="col-md-6 col-sm-6 col-xs-12 work-space">
 								<a href="{{url_for('article', id=post.id, type=post.post_type, slug=post.slugified_title)}}">
 			                		<div class="featured-img">
-			                			<img src="{{url_for('static', filename=post.featured_image)}}"/>
+			                			<img src="{{ post.featured_image|thumbnail('300x150', crop='fit') }}" alt="" />
 			                		</div>
 			                		<div class="image-hover">
 			                			<i class="glyphicon glyphicon-eye-open"></i>
