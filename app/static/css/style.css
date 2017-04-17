@@ -415,6 +415,7 @@ h2.portfolio-text::after {
 }
 .text-center .img-responsive {
     margin: auto;
+     width: 100%;
 }
 .program_vars {}
 
