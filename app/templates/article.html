@@ -47,7 +47,11 @@
                 <h1>{{post.title}}</h1>
                 <hr>
                 <!-- Date/Time -->
-                <p><span class="glyphicon glyphicon-time"></span> Posted on {{post.post_date}}</p>
+                <p><span class="glyphicon glyphicon-time"></span> Posted on {{post.post_date}}
+                {% if current_user.is_authenticated %}
+                <span class="pull-right"><a href="/admin/posts/edit/?id={{post.id}}">Edit This Post</a></span>
+                {% endif %}
+                </p>
                 <hr>
                 <!-- Preview Image -->
                 <div class="text-center">
