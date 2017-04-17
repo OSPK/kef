@@ -163,8 +163,8 @@
 		{% endfor %}
 
       <div id="pagination" class="container">
-      {% if pcont.has_prev %}<a id="previous" class="pull-left" href="{{ url_for('posts', type=type, page=pcont.prev_num) }}">&lt;&lt; Newer posts</a>{% endif %}
-      {% if pcont.has_next %}<a id="next" class="pull-right" href="{{ url_for('posts', type=type, page=pcont.next_num) }}">Older posts &gt;&gt;</a>{% endif %}
+      {% if pcont.has_next %}<a id="next" class="pull-left" href="{{ url_for('posts', type=type, page=pcont.next_num) }}"><h4>&lt;&lt; Older posts</h4></a>{% endif %}
+      {% if pcont.has_prev %}<a id="previous" class="pull-right" href="{{ url_for('posts', type=type, page=pcont.prev_num) }}"><h4>Newer posts &gt;&gt;</h4></a>{% endif %}
       </div>
 		</div>
 		<div class="col-md-4">
