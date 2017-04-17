@@ -98,7 +98,8 @@
                     <div class="related-post row">
                         <div class="col-md-12">
                             {% if post.featured_image %}
-                            <a href="{{url_for('article', id=post.id, type=post.post_type, slug=post.slugified_title)}}"><img src="{{url_for('static', filename=post.featured_image)}}" alt=""></a>
+                            <a href="{{url_for('article', id=post.id, type=post.post_type, slug=post.slugified_title)}}"><img src="{{url_for('static', filename=post.featured_image)}}" alt="">
+                            <img src="{{ post.featured_image|thumbnail('200x200') }}" alt="" /></a>
                             {% endif %}
                         </div>
                         <div class="col-md-12">
