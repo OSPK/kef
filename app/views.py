@@ -308,7 +308,8 @@ def index():
 
 
 @app.route('/<type>')
-def posts(type):
+@app.route('/<type>/<int:page>')
+def posts(type, page=1):
     posts = Posts.query.filter_by(post_type=type).order_by(desc(Posts.post_date)).paginate(page, POSTS_PER_PAGE, False)
     return render_template('posts.html', posts=posts, type=type)
 
