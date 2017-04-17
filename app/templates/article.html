@@ -99,7 +99,7 @@
                         <div class="col-md-12">
                             {% if post.featured_image %}
                             <a href="{{url_for('article', id=post.id, type=post.post_type, slug=post.slugified_title)}}">
-                            <img src="{{ post.featured_image|thumbnail('300x150') }}" alt="" />
+                            <img src="{{ post.featured_image|thumbnail('300x150', crop='fit') }}" alt="" />
                             </a>
                             {% endif %}
                         </div>
