@@ -418,5 +418,5 @@ def all_programs():
 @app.route('/<type>/<int:id>/<slug>')
 def article(id, slug, type):
     post = Posts.query.get(id)
-    related = Posts.query.filter_by(post_type=type).order_by(desc(Posts.post_date)).limit(5)
-    return render_template('article.html', post=post)
+    related = Posts.query.filter_by(post_type=type).order_by(desc(Posts.post_date)).limit(5).all()
+    return render_template('article.html', post=post, related=related)
