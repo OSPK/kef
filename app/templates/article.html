@@ -97,7 +97,7 @@
                         </div>
                         <div class="col-md-12">
                             <small>Published: {{post.post_date}}</small>
-                            <a href="{{url_for('article', id=post.id, type=post.post_type, slug=post.slugified_title)}}" class="btn btn-primary pull-right"><h4 style="margin-top:0px;">{{post.title}}</h4></a>
+                            <a href="{{url_for('article', id=post.id, type=post.post_type, slug=post.slugified_title)}}"><h4 style="margin-top:0px;">{{post.title}}</h4></a>
                         </div>
                     </div>
                 {% endfor %}
