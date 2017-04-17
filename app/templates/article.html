@@ -1,5 +1,29 @@
 {% extends "base.html" %}
 
+{% block meta %}
+    <!-- Schema.org markup for Google+ -->
+    <meta itemprop="name" content="{{post.meta_title}}">
+    <meta itemprop="description" content="{{post.meta_description}}">
+    <meta itemprop="image" content="{% if post.featured_image %}http://careerkarwan.com{{url_for('static', filename=post.featured_image)}}{% endif %}">
+
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="">
+    <meta name="twitter:title" content="{{post.meta_title}}">
+    <meta name="twitter:description" content="{{post.meta_description}}">
+    <meta name="twitter:creator" content="">
+    <!-- Twitter summary card with large image must be at least 280x150px -->
+    <meta name="twitter:image:src" content="{% if post.featured_image %}http://careerkarwan.com{{url_for('static', filename=post.featured_image)}}{% endif %}">
+
+    <!-- Open Graph data -->
+    <meta property="og:title" content="{{post.meta_title}}" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="http://careerkarwan.com{{url_for('article', id=post.id, type=post.post_type, slug=post.slugified_title)}}" />
+    <meta property="og:image" content="{% if post.featured_image %}http://careerkarwan.com{{url_for('static', filename=post.featured_image)}}{% endif %}" />
+    <meta property="og:description" content="{{post.meta_description}}" />
+    <meta property="og:site_name" content="careerkarwan.com" />
+{% endblock %}
+
 {% block content %}
 <style>
 .article {
@@ -37,11 +61,15 @@
                     {% endif %}
                 </div>
                 <hr>
+                <!-- Go to www.addthis.com/dashboard to customize your tools --> <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-58f44ce876ad0f50"></script> 
                 <!-- Post Content -->
                 <div class="content">
                 	{{post.content|safe|nl2br}}
                 </div>
                 <hr>
+                <div class="related">
+                    <!-- Go to www.addthis.com/dashboard to customize your tools --> <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-58f44ce876ad0f50"></script> 
+                </div>
                 <!-- Blog Comments -->
                 <div id="disqus_thread"></div>
 				<script>
