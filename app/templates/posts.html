@@ -162,7 +162,7 @@
 			{% endif %}
 		{% endfor %}
 
-      <div id="pagination" class="container">
+      <div id="pagination">
       {% if pcont.has_next %}<a id="next" class="pull-left" href="{{ url_for('posts', type=type, page=pcont.next_num) }}"><h4>&lt;&lt; Older posts</h4></a>{% endif %}
       {% if pcont.has_prev %}<a id="previous" class="pull-right" href="{{ url_for('posts', type=type, page=pcont.prev_num) }}"><h4>Newer posts &gt;&gt;</h4></a>{% endif %}
       </div>
