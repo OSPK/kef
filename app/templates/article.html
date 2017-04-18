@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% block title %}{{post.title}}{% endblock %}
+
 {% block meta %}
     <!-- Schema.org markup for Google+ -->
     <meta itemprop="name" content="{{post.meta_title}}">

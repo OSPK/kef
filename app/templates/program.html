@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% block title %}Career Karwan - {{ if_exists(program.institution_name )}} - {{ program.degree }} - {{program.title}}{% endblock %}
+
 {% macro if_exists(variable) %}
 	{% if variable %}
 		<span class="program_vars">{{variable}}</span><br><br>
