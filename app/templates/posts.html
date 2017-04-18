@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Career Karwan - {{type|capitalize}}{% endblock %}
+{% block title %}Career Karwan - {{type|replace("-", " ")|capitalize}}{% endblock %}
 
 {% block content %}
 <div class="main hidden" id="page-top">
