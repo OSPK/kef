@@ -21,7 +21,9 @@
     <meta property="og:title" content="{{post.meta_title}}" />
     <meta property="og:type" content="article" />
     <meta property="og:url" content="http://careerkarwan.com{{url_for('article', id=post.id, type=post.post_type, slug=post.slugified_title)}}" />
-    <meta property="og:image" content="{% if post.featured_image %}http://careerkarwan.com{{url_for('static', filename=post.featured_image)}}{% endif %}" />
+    <meta property="og:image" content="{% if post.featured_image %}http://careerkarwan.com{{ post.featured_image|thumbnail('640x480', crop='fit') }}{% endif %}" />
+    <meta property="og:image:width" content="640" /> 
+    <meta property="og:image:height" content="480" />
     <meta property="og:description" content="{{post.meta_description}}" />
     <meta property="og:site_name" content="careerkarwan.com" />
 {% endblock %}
