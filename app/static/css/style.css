@@ -488,7 +488,7 @@ h2.portfolio-text::after {
 .main-nav {
     background: #bf261b;
 }
-.main-nav li a {
+.main-nav .navbar-nav>li>a {
     color:white;
     font-weight: bold;
 }
