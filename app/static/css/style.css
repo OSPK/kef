@@ -485,20 +485,20 @@ h2.portfolio-text::after {
 .active {
     color: #fff !important;
 }
-.nav-justified {
+.main-nav {
     background: #bf261b;
 }
-.nav-justified li a {
+.main-nav li a {
     color:white;
     font-weight: bold;
 }
-.nav-justified li a:hover {
+.main-nav li a:hover {
     color:black;
 }
-.nav-justified>.dropdown .dropdown-menu {
+.main-nav>.dropdown .dropdown-menu {
     background: #402c2b;
 }
-.nav-justified.nav .open>a, .nav-justified.nav .open>a:focus, .nav-justified.nav .open>a:hover {
+.main-nav.nav .open>a, .main-nav.nav .open>a:focus, .main-nav.nav .open>a:hover {
     background-color: #402c2b;
 }
 .nav li a:focus {
