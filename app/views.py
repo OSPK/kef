@@ -108,6 +108,7 @@ class PostsView(ModelView):
                                 ('scholarships', 'Scholarships'),
                                 ('career-counselling', 'Career Counselling'),
                                 ('success-stories', 'Success Stories'),
+                                ('CSS','CSS'),
                                 ('my-teachers', 'My Teachers')
                                 ]
                     }
