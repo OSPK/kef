@@ -116,6 +116,15 @@
                 {% endfor %}
                 </div>
                 <br>
+                {% set widgets_ = widget_maker('posts-list', category=post.post_type) %}
+                {% for widget in widgets_ %}
+                    <div class="widget">
+                        <h3 class='widget-header'>{{widget.title}}</h3>
+                        <div class="widget-content">{{widget.content|safe}}</div>
+                        <div class="widget-footer"></div>
+                    </div><br>
+                {% endfor %}
+
                 {% set widgets = post.widgets %}
                 {% for widget in widgets %}
                     <div class="widget">
@@ -124,6 +133,7 @@
                         <div class="widget-footer"></div>
                     </div><br>
                 {% endfor %}
+
             </div>
 
         </div>
