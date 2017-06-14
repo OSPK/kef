@@ -85,6 +85,24 @@
 
             <!-- Blog Sidebar Widgets Column -->
             <div class="col-md-4">
+                {% set widgets1 = widget_maker('posts-list', category=post.post_type) %}
+                {% for widget in widgets1 %}
+                    <div class="widget">
+                        <h3 class='widget-header'>{{widget.title}}</h3>
+                        <div class="widget-content">{{widget.content|safe}}</div>
+                        <div class="widget-footer"></div>
+                    </div><br>
+                {% endfor %}
+
+                {% set widgets = post.widgets %}
+                {% for widget in widgets %}
+                    <div class="widget">
+                        <h3 class='widget-header'>{{widget.title}}</h3>
+                        <div class="widget-content">{{widget.content|safe}}</div>
+                        <div class="widget-footer"></div>
+                    </div><br>
+                {% endfor %}
+                <hr>
                 <div class="related-posts">
                 {% for post in related %}
                     <div class="related-post row">
@@ -102,27 +120,6 @@
                     </div>
                 {% endfor %}
                 </div>
-                <br>
-                {% set widgets1 = widget_maker('posts-list', category=post.post_type) %}
-                {% for widget in widgets1 %}
-                    1
-                    <div class="widget">
-                        <h3 class='widget-header'>{{widget.title}}</h3>
-                        <div class="widget-content">{{widget.content|safe}}</div>
-                        <div class="widget-footer"></div>
-                    </div><br>
-                {% endfor %}
-
-                {% set widgets = post.widgets %}
-                {% for widget in widgets %}
-                    2
-                    <div class="widget">
-                        <h3 class='widget-header'>{{widget.title}}</h3>
-                        <div class="widget-content">{{widget.content|safe}}</div>
-                        <div class="widget-footer"></div>
-                    </div><br>
-                {% endfor %}
-
             </div>
 
         </div>
