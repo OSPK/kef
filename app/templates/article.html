@@ -103,24 +103,26 @@
                     </div><br>
                 {% endfor %}
                 <hr>
-                <div class="related-posts">
-                    <h3>Related Posts</h3>
-                {% for post in related %}
-                    <div class="related-post row">
-                        <div class="col-md-12">
-                            {% if post.featured_image %}
-                            <a href="{{url_for('article', id=post.id, type=post.post_type, slug=post.slugified_title)}}">
-                            <img src="{{ post.featured_image|thumbnail('300x150', crop='fit') }}" alt="" />
-                            </a>
-                            {% endif %}
+                {% if not widgets1 %}
+                    <div class="related-posts">
+                        <h3>Related Posts</h3>
+                    {% for post in related %}
+                        <div class="related-post row">
+                            <div class="col-md-12">
+                                {% if post.featured_image %}
+                                <a href="{{url_for('article', id=post.id, type=post.post_type, slug=post.slugified_title)}}">
+                                <img src="{{ post.featured_image|thumbnail('300x150', crop='fit') }}" alt="" />
+                                </a>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-12">
+                                <small>Published: {{post.post_date}}</small>
+                                <a href="{{url_for('article', id=post.id, type=post.post_type, slug=post.slugified_title)}}"><h4 style="margin-top:0px;">{{post.title}}</h4></a>
+                            </div>
                         </div>
-                        <div class="col-md-12">
-                            <small>Published: {{post.post_date}}</small>
-                            <a href="{{url_for('article', id=post.id, type=post.post_type, slug=post.slugified_title)}}"><h4 style="margin-top:0px;">{{post.title}}</h4></a>
-                        </div>
+                    {% endfor %}
                     </div>
-                {% endfor %}
-                </div>
+                {% endif %}
             </div>
 
         </div>
